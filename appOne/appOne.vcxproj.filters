@@ -29,6 +29,8 @@
     <ClCompile Include="gmain.cpp">
       <Filter>game</Filter>
     </ClCompile>
+    <ClCompile Include="SCENE.cpp" />
+    <ClCompile Include="TITLE.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GAME.h">
@@ -37,5 +39,7 @@
     <ClInclude Include="GAME_OBJECT.h">
       <Filter>game</Filter>
     </ClInclude>
+    <ClInclude Include="SCENE.h" />
+    <ClInclude Include="TITLE.h" />
   </ItemGroup>
 </Project>
