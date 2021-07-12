@@ -22,6 +22,10 @@ void FADE::outTrigger(){
     }
 }
 void FADE::draw(){
+    if (State == STATE::IN_END ||
+        State == STATE::OUT_END) {
+        return;
+    }
     rectMode(CORNER);
     colorMode(RGB,255);
     switch( State ){
@@ -40,8 +44,6 @@ void FADE::draw(){
             State = STATE::IN_END;
         }
         break;
-    case STATE::IN_END:
-        break;
     case STATE::OUT_TRIGGER:
         Fade.color.a = 0.0f;
         State = STATE::OUT_NOW;
@@ -54,8 +56,6 @@ void FADE::draw(){
             Fade.color.a = 255.0f;
             State = STATE::OUT_END;
         }
-        break;
-    case STATE::OUT_END:
         break;
     }
 }
