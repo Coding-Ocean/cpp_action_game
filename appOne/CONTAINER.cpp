@@ -10,4 +10,5 @@ void CONTAINER::loadGraphics() {
     int backImg = loadImage("assets\\back.png");
     Data.title.backImg = backImg;
     Data.title.titleImg = loadImage("assets\\title.png");
+    Data.stage.backImg = backImg;
 }

@@ -1,6 +1,8 @@
 #include"graphic.h"
+#include"input.h"
 #include"GAME.h"
 #include"CONTAINER.h"
+#include"STAGE.h"
 #include "TITLE.h"
 TITLE::TITLE(class GAME* game):
 SCENE(game){
@@ -16,4 +18,7 @@ void TITLE::draw(){
     image(Title.titleImg, 0, 0);
 }
 void TITLE::nextScene(){
+    if (isTrigger(KEY_J)) {
+        game()->setCurScene(game()->stage());
+    }
 }

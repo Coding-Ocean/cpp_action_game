@@ -32,6 +32,7 @@
     <ClCompile Include="SCENE.cpp" />
     <ClCompile Include="TITLE.cpp" />
     <ClCompile Include="CONTAINER.cpp" />
+    <ClCompile Include="STAGE.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GAME.h">
@@ -43,5 +44,6 @@
     <ClInclude Include="SCENE.h" />
     <ClInclude Include="TITLE.h" />
     <ClInclude Include="CONTAINER.h" />
+    <ClInclude Include="STAGE.h" />
   </ItemGroup>
 </Project>

@@ -1,10 +1,12 @@
 #pragma once
 #include"TITLE.h"
+#include"STAGE.h"
 class CONTAINER
 {
 private:
     struct DATA {
         TITLE::DATA title;
+        STAGE::DATA stage;
     };
     DATA Data;
 public:
