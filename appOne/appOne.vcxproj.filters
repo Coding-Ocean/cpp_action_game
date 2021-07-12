@@ -14,6 +14,9 @@
     <Filter Include="container">
       <UniqueIdentifier>{9c9586f2-12b8-4890-b422-0db71504da61}</UniqueIdentifier>
     </Filter>
+    <Filter Include="scene\base">
+      <UniqueIdentifier>{e64dba40-a118-4f9a-9d22-299551c399f1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc">
@@ -35,9 +38,6 @@
     <ClCompile Include="gmain.cpp">
       <Filter>game</Filter>
     </ClCompile>
-    <ClCompile Include="SCENE.cpp">
-      <Filter>scene</Filter>
-    </ClCompile>
     <ClCompile Include="STAGE.cpp">
       <Filter>scene</Filter>
     </ClCompile>
@@ -48,7 +48,12 @@
       <Filter>container</Filter>
     </ClCompile>
     <ClCompile Include="MAP.cpp" />
-    <ClCompile Include="FADE.cpp" />
+    <ClCompile Include="FADE.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="SCENE.cpp">
+      <Filter>scene\base</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GAME.h">
@@ -56,9 +61,6 @@
     </ClInclude>
     <ClInclude Include="GAME_OBJECT.h">
       <Filter>game</Filter>
-    </ClInclude>
-    <ClInclude Include="SCENE.h">
-      <Filter>scene</Filter>
     </ClInclude>
     <ClInclude Include="STAGE.h">
       <Filter>scene</Filter>
@@ -70,6 +72,11 @@
       <Filter>container</Filter>
     </ClInclude>
     <ClInclude Include="MAP.h" />
-    <ClInclude Include="FADE.h" />
+    <ClInclude Include="FADE.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="SCENE.h">
+      <Filter>scene\base</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
