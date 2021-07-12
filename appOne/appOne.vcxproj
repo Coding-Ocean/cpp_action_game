@@ -152,6 +152,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CONTAINER.cpp" />
     <ClCompile Include="GAME.cpp" />
     <ClCompile Include="GAME_OBJECT.cpp" />
     <ClCompile Include="gmain.cpp" />
@@ -165,6 +166,7 @@
     <None Include="cpp.hint" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CONTAINER.h" />
     <ClInclude Include="GAME.h" />
     <ClInclude Include="GAME_OBJECT.h" />
     <ClInclude Include="SCENE.h" />

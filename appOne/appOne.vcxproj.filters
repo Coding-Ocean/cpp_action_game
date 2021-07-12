@@ -31,6 +31,7 @@
     </ClCompile>
     <ClCompile Include="SCENE.cpp" />
     <ClCompile Include="TITLE.cpp" />
+    <ClCompile Include="CONTAINER.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GAME.h">
@@ -41,5 +42,6 @@
     </ClInclude>
     <ClInclude Include="SCENE.h" />
     <ClInclude Include="TITLE.h" />
+    <ClInclude Include="CONTAINER.h" />
   </ItemGroup>
 </Project>

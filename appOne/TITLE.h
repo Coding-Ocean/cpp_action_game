@@ -5,7 +5,8 @@ class TITLE :
 {
 public:
     struct DATA {
-        int img;
+        int backImg = 0;
+        int titleImg = 0;
     };
 private:
     DATA Title;
