@@ -5,6 +5,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="game">
+      <UniqueIdentifier>{98b5593d-6477-4e95-a744-1da920628e7f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc">
@@ -17,10 +20,22 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="gmain.cpp" />
-    <ClCompile Include="GAME.cpp" />
+    <ClCompile Include="GAME.cpp">
+      <Filter>game</Filter>
+    </ClCompile>
+    <ClCompile Include="GAME_OBJECT.cpp">
+      <Filter>game</Filter>
+    </ClCompile>
+    <ClCompile Include="gmain.cpp">
+      <Filter>game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GAME.h" />
+    <ClInclude Include="GAME.h">
+      <Filter>game</Filter>
+    </ClInclude>
+    <ClInclude Include="GAME_OBJECT.h">
+      <Filter>game</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

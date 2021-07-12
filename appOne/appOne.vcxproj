@@ -153,6 +153,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="GAME.cpp" />
+    <ClCompile Include="GAME_OBJECT.cpp" />
     <ClCompile Include="gmain.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -163,6 +164,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GAME.h" />
+    <ClInclude Include="GAME_OBJECT.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
