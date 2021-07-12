@@ -8,6 +8,12 @@
     <Filter Include="game">
       <UniqueIdentifier>{98b5593d-6477-4e95-a744-1da920628e7f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="scene">
+      <UniqueIdentifier>{54224c2d-2623-4a60-b7e0-0a13ea4e51e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="container">
+      <UniqueIdentifier>{9c9586f2-12b8-4890-b422-0db71504da61}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc">
@@ -29,10 +35,20 @@
     <ClCompile Include="gmain.cpp">
       <Filter>game</Filter>
     </ClCompile>
-    <ClCompile Include="SCENE.cpp" />
-    <ClCompile Include="TITLE.cpp" />
-    <ClCompile Include="CONTAINER.cpp" />
-    <ClCompile Include="STAGE.cpp" />
+    <ClCompile Include="SCENE.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="STAGE.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="TITLE.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="CONTAINER.cpp">
+      <Filter>container</Filter>
+    </ClCompile>
+    <ClCompile Include="MAP.cpp" />
+    <ClCompile Include="FADE.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GAME.h">
@@ -41,9 +57,19 @@
     <ClInclude Include="GAME_OBJECT.h">
       <Filter>game</Filter>
     </ClInclude>
-    <ClInclude Include="SCENE.h" />
-    <ClInclude Include="TITLE.h" />
-    <ClInclude Include="CONTAINER.h" />
-    <ClInclude Include="STAGE.h" />
+    <ClInclude Include="SCENE.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="STAGE.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="TITLE.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="CONTAINER.h">
+      <Filter>container</Filter>
+    </ClInclude>
+    <ClInclude Include="MAP.h" />
+    <ClInclude Include="FADE.h" />
   </ItemGroup>
 </Project>

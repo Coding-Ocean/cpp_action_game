@@ -10,10 +10,17 @@ private:
     class TITLE* Title = nullptr;
     class STAGE* Stage = nullptr;
     class SCENE* CurScene = nullptr;
+    class FADE* Fade = nullptr;
 public:
     class TITLE* title() { return Title; }
     class STAGE* stage() { return Stage; }
-    void setCurScene(SCENE* scene) { CurScene = scene; }
+    class FADE* fade() { return Fade; }
+    void setCurScene(SCENE* scene);
+//キャラクタ
+private:
+    class MAP* Map = nullptr;
+public:
+    class MAP* map() { return Map; }
 //マネージャー
 public:
     GAME();
