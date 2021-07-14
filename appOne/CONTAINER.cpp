@@ -6,8 +6,8 @@ CONTAINER::~CONTAINER() {
     delete[] Data.explosion.anims;
     delete Data.batBullet.anims[0];
     delete[] Data.batBullet.anims;
-    delete Data.bat.anims[0];
-    delete[] Data.bat.anims;
+    delete Data.batChara.anims[0];
+    delete[] Data.batChara.anims;
     delete Data.pumpkin.anims[1];
     delete Data.pumpkin.anims[0];
     delete[] Data.pumpkin.anims;
@@ -31,17 +31,56 @@ void CONTAINER::CreateData() {
     Data.map.chipSize = 50;
 
     Data.player.charaId = 'a';
+
     Data.playerBullet.charaId = 'b';
+    Data.playerBullet.groupId = 0;//味方グループは0 
+    Data.playerBullet.initHp = 1;
+    Data.playerBullet.speed = 4.7f*60;
+    Data.playerBullet.offsetLeft = 20.0f;
+    Data.playerBullet.offsetTop = 20.0f;
+    Data.playerBullet.offsetRight = 30.0f;
+    Data.playerBullet.offsetBottom = 30.0f;
+    
     Data.pumpkin.charaId = 'c';
-    Data.bat.charaId = 'd';
+
+    Data.batChara.charaId = 'd';
+    Data.batChara.initHp = 10;
+    Data.batChara.groupId = 1;
+    Data.batChara.offsetLeft = 10.0f;
+    Data.batChara.offsetTop = 10.0f;
+    Data.batChara.offsetRight = 30.0f;
+    Data.batChara.offsetBottom = 35.0f;
+
+    Data.bat.elapsedTime = 0;
+    Data.bat.interval = 0.016f;
+    Data.bat.triggerCnt = 60;
+    Data.bat.triggerInterval = 240;
+    Data.bat.trigger1st = 220;
+    Data.bat.trigger2nd = 225;
+    Data.bat.trigger3rd = 230;
+    Data.bat.trigger4th = 235;
+    Data.bat.bulletCharaId = 'e';
+    Data.bat.damageTime = 0;
+    Data.bat.damageInterval = 5*0.016f;
+    Data.bat.appearBulletOffsetX = 20.0f;
+    Data.bat.alphaLowVal = 25;
+
     Data.batBullet.charaId = 'e';
+    Data.batBullet.groupId = 1;//敵グループは1
+    Data.batBullet.initHp = 1;
+    Data.batBullet.speed = 4.7f*60;
+    Data.batBullet.offsetLeft = 20.0f;
+    Data.batBullet.offsetTop = 20.0f;
+    Data.batBullet.offsetRight = 30.0f;
+    Data.batBullet.offsetBottom = 30.0f;
+
     Data.explosion.charaId = 'f';
 
     Data.charaMng.numPlayers = 1;
     Data.charaMng.numPlayerBullets = 5;
     Data.charaMng.numPumpkins = 5;
     Data.charaMng.numBats = 5;
-    Data.charaMng.numBatBullets = 10;
+    Data.charaMng.numBatBullets = 12;
     Data.charaMng.numExplosions = 2;
 }
 void CONTAINER::LoadGraphics() {
@@ -70,10 +109,10 @@ void CONTAINER::LoadGraphics() {
     Data.pumpkin.anims[1]->load(4, "assets\\pumpkinR");
     Data.pumpkin.anims[1]->setInterval(0.1f);
 
-    Data.bat.anims = new ANIM*[1];
-    Data.bat.anims[0] = new ANIM;
-    Data.bat.anims[0]->load(4, "assets\\bat");
-    Data.bat.anims[0]->setInterval(0.1f);
+    Data.batChara.anims = new ANIM*[1];
+    Data.batChara.anims[0] = new ANIM;
+    Data.batChara.anims[0]->load(4, "assets\\bat");
+    Data.batChara.anims[0]->setInterval(0.1f);
 
     Data.batBullet.anims = new ANIM * [1];
     Data.batBullet.anims[0] = new ANIM;

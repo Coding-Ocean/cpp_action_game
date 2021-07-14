@@ -3,7 +3,7 @@
 #include"STAGE.h"
 #include"FADE.h"
 #include"MAP.h"
-#include"CHARACTER.h"
+#include"BAT.h"
 #include"CHARACTER_MANAGER.h"
 class CONTAINER
 {
@@ -16,7 +16,8 @@ private:
         CHARACTER::DATA player;
         CHARACTER::DATA playerBullet;
         CHARACTER::DATA pumpkin;
-        CHARACTER::DATA bat;
+        CHARACTER::DATA batChara;
+        BAT::DATA bat;
         CHARACTER::DATA batBullet;
         CHARACTER::DATA explosion;
         CHARACTER_MANAGER::DATA charaMng;

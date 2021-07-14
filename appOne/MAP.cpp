@@ -77,7 +77,7 @@ void MAP::draw() {
             }
             else if (charaId >= 'a' && charaId <= 'z') {
                 game()->characterManager()->appear(charaId,
-                    VECTOR2(wx, wy), VECTOR2(0, 0));
+                    VECTOR2(wx, wy), VECTOR2(1, 0));
                 Map.data[r * Map.cols + c] = '.';
             }
         }
