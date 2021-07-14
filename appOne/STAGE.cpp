@@ -4,6 +4,7 @@
 #include"CONTAINER.h"
 #include"FADE.h"
 #include"MAP.h"
+#include"CHARACTER_MANAGER.h"
 #include "STAGE.h"
 STAGE::STAGE(class GAME* game):
 SCENE(game){
@@ -14,19 +15,19 @@ void STAGE::create(){
 }
 void STAGE::init() {
     game()->map()->init();
+    game()->characterManager()->init();
     game()->fade()->inTrigger();
 }
 void STAGE::update() {
     game()->map()->update();
+    game()->characterManager()->update();
 }
 void STAGE::draw(){
     clear();
     rectMode(CORNER);
     image(Stage.backImg, 0, 0);
     game()->map()->draw();
-    printSize(80);
-    fill(255);
-    print("Stage");
+    game()->characterManager()->draw();
     game()->fade()->draw();
 }
 void STAGE::nextScene() {

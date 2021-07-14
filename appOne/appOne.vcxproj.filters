@@ -54,6 +54,15 @@
     <ClCompile Include="SCENE.cpp">
       <Filter>scene\base</Filter>
     </ClCompile>
+    <ClCompile Include="ANIM.cpp" />
+    <ClCompile Include="BAT.cpp" />
+    <ClCompile Include="CHARACTER_MANAGER.cpp" />
+    <ClCompile Include="CHARACTER.cpp" />
+    <ClCompile Include="PLAYER.cpp" />
+    <ClCompile Include="PLAYER_BULLET.cpp" />
+    <ClCompile Include="PUMPKIN.cpp" />
+    <ClCompile Include="BAT_BULLET.cpp" />
+    <ClCompile Include="EXPLOSION.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GAME.h">
@@ -78,5 +87,17 @@
     <ClInclude Include="SCENE.h">
       <Filter>scene\base</Filter>
     </ClInclude>
+    <ClInclude Include="CHARACTER.h" />
+    <ClInclude Include="ANIM.h" />
+    <ClInclude Include="BAT.h" />
+    <ClInclude Include="CHARACTER_MANAGER.h" />
+    <ClInclude Include="PLAYER.h" />
+    <ClInclude Include="PLAYER_BULLET.h" />
+    <ClInclude Include="PUMPKIN.h" />
+    <ClInclude Include="BAT_BULLET.h" />
+    <ClInclude Include="EXPLOSION.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="assets\map1.txt" />
   </ItemGroup>
 </Project>

@@ -6,15 +6,19 @@
 #include"STAGE.h"
 #include"FADE.h"
 #include"MAP.h"
+#include"CHARACTER_MANAGER.h"
 #include"GAME.h"
+
 GAME::GAME() {
     Container = new CONTAINER();
     Title = new TITLE(this);
     Stage = new STAGE(this);
     Fade = new FADE(this);
     Map = new MAP(this);
+    CharacterManager = new CHARACTER_MANAGER(this);
 }
 GAME::~GAME() {
+    delete CharacterManager;
     delete Map;
     delete Fade;
     delete Stage;
@@ -24,12 +28,16 @@ GAME::~GAME() {
 void GAME::run() {
     window(800, 600, full);
     hideCursor();
+    
     Container->load();
+    
     Title->create();
     Stage->create();
     Fade->create();
     Map->create();
-    CurScene = Title;
+    CharacterManager->create();
+    
+    CurScene = Stage;
     CurScene->init();
     initDeltaTime();
     while (notQuit) {

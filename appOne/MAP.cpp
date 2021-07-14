@@ -3,6 +3,7 @@
 #include"GAME.h"
 #include"CONTAINER.h"
 #include "MAP.h"
+#include"CHARACTER_MANAGER.h"
 MAP::MAP(class GAME* game):
     GAME_OBJECT(game){
 }
@@ -55,29 +56,90 @@ void MAP::init() {
     Map.dispCols = (int)width / Map.chipSize + 1;//表示すべき列数
     Map.worldWidth = (float)Map.chipSize * (Map.cols - 2);//ワールドの横幅
     Map.endWorldX = Map.worldWidth - width;//表示できる最後の座標
-    Map.worldX = 0.0f;//現在表示しているワールド座標
+    Map.world.x = 0.0f;//現在表示しているワールド座標
 }
 void MAP::update() {
-    Map.worldX += 60 * delta;
-    if (Map.worldX > Map.endWorldX) {
-        Map.worldX = Map.endWorldX;
+    Map.world.x += 60 * delta;
+    if (Map.world.x > Map.endWorldX) {
+        Map.world.x = Map.endWorldX;
     }
 }
 void MAP::draw() {
-    int startCol = (int)Map.worldX / Map.chipSize;//表示開始列
+    int startCol = (int)Map.world.x / Map.chipSize;//表示開始列
     int endCol = startCol + Map.dispCols;//表示終了列
     for (int c = startCol; c < endCol; c++) {
-        float px = -Map.worldX + Map.chipSize * c;
+        float wx = (float)Map.chipSize * c;
         for (int r = 0; r < Map.rows; r++) {
-            float py = (float)Map.chipSize * r;
-            switch (Map.data[r * Map.cols + c]) {
-            case '1':
-                image(Map.blockImg, px, py);
-                break;
-            default:
-                break;
+            float wy = (float)Map.chipSize * r;
+            char charaId = Map.data[r * Map.cols + c];
+            if (charaId >= '0' && charaId <= '9') {
+                image(Map.blockImg, wx - Map.world.x, wy);
+            }
+            else if (charaId >= 'a' && charaId <= 'z') {
+                game()->characterManager()->appear(charaId,
+                    VECTOR2(wx, wy), VECTOR2(0, 0));
+                Map.data[r * Map.cols + c] = '.';
             }
         }
     }
 }
+//ブロックとキャラの当たり判定用関数群---------------------------------------------------
+//　指定されたワールド座標( wx wy )が、ブロックの中にはいっているかチェックする
+bool MAP::collisionCheck(float wx, float wy) {
+    //ワールド座標からマップDataの列colと行rowを求める
+    int col = (int)wx / Map.chipSize;
+    int row = (int)wy / Map.chipSize;
+    //Dataの範囲外は判定できないので除外
+    if ((col < 0) || (col >= Map.cols) || (row < 0) || (row >= Map.rows)) {
+        return false;
+    }
+    //次の記述で座標がブロックの中に入っているか判定できる
+    if (Map.data[col + row * Map.cols] == '1') {
+        return true;
+    }
+    return false;
+}
+//　ブロックとキャラの左辺が重なっているか
+bool MAP::collisionCharaLeft(float wx, float wy) {
+    bool leftTop = collisionCheck(wx, wy);
+    bool leftBottom = collisionCheck(wx, wy + Map.chipSize - 1);
+    return leftTop || leftBottom;
+}
+//　ブロックとキャラの右辺が重なっているか
+bool MAP::collisionCharaRight(float wx, float wy) {
+    bool rightTop = collisionCheck(wx + Map.chipSize - 1, wy);
+    bool rightBottom = collisionCheck(wx + Map.chipSize - 1, wy + Map.chipSize - 1);
+    return rightTop || rightBottom;
+}
+//　ブロックとキャラの上辺が重なっているか
+bool MAP::collisionCharaTop(float wx, float wy) {
+    bool topLeft = collisionCheck(wx, wy);
+    bool topRight = collisionCheck(wx + Map.chipSize - 1, wy);
+    return topLeft || topRight;
+}
+//　ブロックとキャラの下辺が重なっている、または、接しているか。ここだけ他と違う！
+bool MAP::collisionCharaBottom(float wx, float wy) {
+    // wy + Map.chipSizeをCheck関数に渡すことにより
+    // キャラがブロックと接しているかチェックできる。
+    bool bottomLeft = collisionCheck(wx, wy + Map.chipSize);
+    bool bottomRight = collisionCheck(wx + Map.chipSize - 1, wy + Map.chipSize);
+    return bottomLeft || bottomRight;
+}
+//　ブロックと弾の当たり判定に使用
+bool MAP::collisionCharaRect(float wLeft, float wTop, float wRight, float wBottom) {
+    bool rightTop = collisionCheck(wRight, wTop);
+    bool rightBottom = collisionCheck(wRight, wBottom);
+    bool leftTop = collisionCheck(wLeft, wTop);
+    bool leftBottom = collisionCheck(wLeft, wBottom);
+    return rightTop || rightBottom || leftTop || leftBottom;
+}
+//ウィンドウからのはみだし判定用---------------------------------------------------------
+float MAP::wDispLeft() {
+    return Map.world.x - Map.chipSize;
+}
+float MAP::wDispRight() {
+    return Map.world.x + width;
+}
+
+
 

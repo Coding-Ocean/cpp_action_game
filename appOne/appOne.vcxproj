@@ -152,12 +152,21 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ANIM.cpp" />
+    <ClCompile Include="BAT.cpp" />
+    <ClCompile Include="BAT_BULLET.cpp" />
+    <ClCompile Include="CHARACTER.cpp" />
+    <ClCompile Include="CHARACTER_MANAGER.cpp" />
     <ClCompile Include="CONTAINER.cpp" />
+    <ClCompile Include="EXPLOSION.cpp" />
     <ClCompile Include="FADE.cpp" />
     <ClCompile Include="GAME.cpp" />
     <ClCompile Include="GAME_OBJECT.cpp" />
     <ClCompile Include="gmain.cpp" />
     <ClCompile Include="MAP.cpp" />
+    <ClCompile Include="PLAYER.cpp" />
+    <ClCompile Include="PLAYER_BULLET.cpp" />
+    <ClCompile Include="PUMPKIN.cpp" />
     <ClCompile Include="SCENE.cpp" />
     <ClCompile Include="STAGE.cpp" />
     <ClCompile Include="TITLE.cpp" />
@@ -169,14 +178,26 @@
     <None Include="cpp.hint" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ANIM.h" />
+    <ClInclude Include="BAT.h" />
+    <ClInclude Include="BAT_BULLET.h" />
+    <ClInclude Include="CHARACTER.h" />
+    <ClInclude Include="CHARACTER_MANAGER.h" />
     <ClInclude Include="CONTAINER.h" />
+    <ClInclude Include="EXPLOSION.h" />
     <ClInclude Include="FADE.h" />
     <ClInclude Include="GAME.h" />
     <ClInclude Include="GAME_OBJECT.h" />
     <ClInclude Include="MAP.h" />
+    <ClInclude Include="PLAYER.h" />
+    <ClInclude Include="PLAYER_BULLET.h" />
+    <ClInclude Include="PUMPKIN.h" />
     <ClInclude Include="SCENE.h" />
     <ClInclude Include="STAGE.h" />
     <ClInclude Include="TITLE.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="assets\map1.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
