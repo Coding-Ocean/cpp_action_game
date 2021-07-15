@@ -15,6 +15,7 @@ public:
     void draw(int* idx, float* elapsed, const VECTOR2& pos, float angle=0, float scale=1 );
     void noLoop() { LoopMode = 0; }
     void setStartIdx(int idx) { StartIdx = idx; }
+    void setEndFlag() { EndFlag = false; }
     bool end() { return EndFlag; }
     void setInterval(float interval) { Interval = interval; }
 };

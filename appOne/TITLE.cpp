@@ -23,11 +23,11 @@ void TITLE::draw(){
     printSize(80);
     fill(255);
     print("Title");
-    print("Push 'J' to start");
+    print("Push 'SPACE' to start");
     game()->fade()->draw();
 }
 void TITLE::nextScene(){
-    if (isTrigger(KEY_J)) {
+    if (isTrigger(KEY_SPACE)) {
         game()->fade()->outTrigger();
     }
     if(game()->fade()->outEndFlag()){

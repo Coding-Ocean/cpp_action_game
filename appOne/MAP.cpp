@@ -58,8 +58,8 @@ void MAP::init() {
     Map.endWorldX = Map.worldWidth - width;//表示できる最後の座標
     Map.world.x = 0.0f;//現在表示しているワールド座標
 }
-void MAP::update() {
-    Map.world.x += 60 * delta;
+void MAP::update(float vecX) {
+    Map.world.x += vecX;
     if (Map.world.x > Map.endWorldX) {
         Map.world.x = Map.endWorldX;
     }
@@ -77,7 +77,7 @@ void MAP::draw() {
             }
             else if (charaId >= 'a' && charaId <= 'z') {
                 game()->characterManager()->appear(charaId,
-                    VECTOR2(wx, wy), VECTOR2(1, 0));
+                    VECTOR2(wx, wy), VECTOR2(0, 0));
                 Map.data[r * Map.cols + c] = '.';
             }
         }

@@ -19,19 +19,30 @@ void STAGE::init() {
     game()->fade()->inTrigger();
 }
 void STAGE::update() {
-    game()->map()->update();
     game()->characterManager()->update();
 }
 void STAGE::draw(){
     clear(60,30,0);
     rectMode(CORNER);
+    imageColor(255, 255, 255, 255);
     image(Stage.backImg, 0, 0);
     game()->map()->draw();
     game()->characterManager()->draw();
+
+    if (game()->characterManager()->player()->died()) {
+        //game()->characterManager()->player()->update();
+        //game()->characterManager()->player()->draw();
+        imageColor(255, 255, 255, 255);
+        image(Stage.gameOverImg, 0, 270);
+    }
+    if (game()->characterManager()->player()->survived()) {
+        imageColor(255, 255, 255, 255);
+        image(Stage.stageClearImg, 0, 270);
+    }
     game()->fade()->draw();
 }
 void STAGE::nextScene() {
-    if (isTrigger(KEY_J)) {
+    if (isTrigger(KEY_SPACE)) {
         game()->fade()->outTrigger();
     }
     if (game()->fade()->outEndFlag()) {

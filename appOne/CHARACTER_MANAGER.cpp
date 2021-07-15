@@ -29,8 +29,9 @@ void CHARACTER_MANAGER::create() {
     Total += CharaMng.numExplosions;
     Characters = new CHARACTER * [Total];
 
+    Player = new PLAYER(game());
     int i, j = 0;
-    for (i = 0; i < CharaMng.numPlayers; i++)       Characters[j++] = new PLAYER(game());
+    for (i = 0; i < CharaMng.numPlayers; i++)       Characters[j++] = Player;
     for (i = 0; i < CharaMng.numPlayerBullets; i++) Characters[j++] = new PLAYER_BULLET(game());
     for (i = 0; i < CharaMng.numPumpkins; i++)      Characters[j++] = new PUMPKIN(game());
     for (i = 0; i < CharaMng.numBats; i++)          Characters[j++] = new BAT(game());
@@ -63,6 +64,31 @@ void CHARACTER_MANAGER::update() {
             Characters[i]->update();
         }
     }
+    //ÉLÉÉÉâÇ∆ÉLÉÉÉâÇÃìñÇΩÇËîªíË---------------------------------------------------
+    for (int i = 0; i < Total - 1; i++) {
+        if (Characters[i]->hp() == 0) {
+            continue;// Å©Ç±Ç±Ç≈i++Ç…ñﬂÇÈ
+        }
+        for (int j = i + 1; j < Total; j++) {
+            if (Characters[j]->hp() == 0) {
+                continue;// Å©Ç±Ç±Ç≈j++Ç…ñﬂÇÈ
+            }
+            //íáä‘Ç«Ç§ÇµÇÕìñÇΩÇËîªíËÇµÇ»Ç¢
+            if (Characters[i]->groupId() == Characters[j]->groupId()) {
+                continue;// Å©Ç±Ç±Ç≈j++Ç…ñﬂÇÈ
+            }
+            //ìñÇΩÇËîªíË
+            if (Characters[i]->wLeft() < Characters[j]->wRight() &&
+                Characters[j]->wLeft() < Characters[i]->wRight() &&
+                Characters[i]->wTop() < Characters[j]->wBottom() &&
+                Characters[j]->wTop() < Characters[i]->wBottom()) {
+                //ìñÇΩÇ¡ÇΩ
+                Characters[i]->damage();
+                Characters[j]->damage();
+            }
+        }
+    }
+
 }
 void CHARACTER_MANAGER::draw() {
     for (int i = 0; i < Total; i++) {

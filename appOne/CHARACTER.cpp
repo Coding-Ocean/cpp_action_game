@@ -1,3 +1,4 @@
+#include"graphic.h"
 #include"ANIM.h"
 #include"CONTAINER.h"
 #include"GAME.h"
@@ -23,8 +24,12 @@ void CHARACTER::update() {
     }
 }
 void CHARACTER::draw() {
+    imageColor(Chara.color);
     VECTOR2 pos = Chara.world - game()->map()->world();
     Chara.anims[Chara.animId]->draw(&Chara.imgIdx, &Chara.elapsedTime, pos);
 }
 void CHARACTER::damage() {
+    if (Chara.hp > 0) {
+        Chara.hp--;
+    }
 }

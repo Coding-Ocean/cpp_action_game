@@ -56,5 +56,8 @@ void BAT::damage() {
     if (Chara.hp > 0) {
         Bat.damageTime = Bat.damageInterval;
         Chara.hp--;
+        if (Chara.hp == 0) {
+            game()->characterManager()->appear('f', Chara.world, VECTOR2(0, 0));
+        }
     }
 }

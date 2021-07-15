@@ -31,6 +31,22 @@ void CONTAINER::CreateData() {
     Data.map.chipSize = 50;
 
     Data.playerChara.charaId = 'a';
+    Data.playerChara.initHp = 1;
+    Data.playerChara.groupId = 0;
+    Data.playerChara.speed = 3.4f * 60;
+    Data.playerChara.offsetLeft = 10.0f;
+    Data.playerChara.offsetTop = 1.0f;
+    Data.playerChara.offsetRight = 40.0f;
+    Data.playerChara.offsetBottom = 49.0f;
+    Data.player.rightAnimId = 0;
+    Data.player.leftAnimId = 1;
+    Data.player.jumpFlag = 0;
+    Data.player.initVecUp = -16.0f;
+    Data.player.initVecDown = 3.0f;
+    Data.player.gravity = 0.8f*60;
+    Data.player.centerX = width / 2 - Data.map.chipSize / 2.0f;
+    Data.player.bulletOffsetX = 20.0f;
+    Data.player.bulletCharaId = 'b';
 
     Data.playerBulletChara.charaId = 'b';
     Data.playerBulletChara.groupId = 0;//–¡•ûƒOƒ‹[ƒv‚Í0 
@@ -42,6 +58,20 @@ void CONTAINER::CreateData() {
     Data.playerBulletChara.offsetBottom = 30.0f;
     
     Data.pumpkinChara.charaId = 'c';
+    Data.pumpkinChara.groupId = 1;
+    Data.pumpkinChara.initHp = 4;
+    Data.pumpkinChara.speed = 1.4f * 60;
+    Data.pumpkinChara.offsetLeft = 10.0f;
+    Data.pumpkinChara.offsetTop = 12.0f;
+    Data.pumpkinChara.offsetRight = 40.0f;
+    Data.pumpkinChara.offsetBottom = 40.0f;
+    Data.pumpkin.rightAnimId = 0;
+    Data.pumpkin.leftAnimId = 1;
+    Data.pumpkin.damageInterval = 5*0.016f;
+    Data.pumpkin.initVecX = -1;
+    Data.pumpkin.initVecY = 0;
+    Data.pumpkin.gravity = 0.8f * 60;
+    Data.pumpkin.alphaLowVal = 25;
 
     Data.batChara.charaId = 'd';
     Data.batChara.initHp = 10;
@@ -50,7 +80,6 @@ void CONTAINER::CreateData() {
     Data.batChara.offsetTop = 10.0f;
     Data.batChara.offsetRight = 30.0f;
     Data.batChara.offsetBottom = 35.0f;
-
     Data.bat.elapsedTime = 0;
     Data.bat.interval = 0.016f;
     Data.bat.triggerCnt = 60;
@@ -84,7 +113,9 @@ void CONTAINER::CreateData() {
     Data.charaMng.numExplosions = 2;
 }
 void CONTAINER::LoadGraphics() {
-    Data.stage.backImg = loadImage("assets\\back.png"); 
+    Data.stage.backImg = loadImage("assets\\back.png");
+    Data.stage.stageClearImg = loadImage("assets\\StageClear.png");
+    Data.stage.gameOverImg = loadImage("assets\\GameOver.png");
     
     Data.map.blockImg = loadImage("assets\\block.png");
     
@@ -103,10 +134,10 @@ void CONTAINER::LoadGraphics() {
 
     Data.pumpkinChara.anims = new ANIM * [2];
     Data.pumpkinChara.anims[0] = new ANIM;
-    Data.pumpkinChara.anims[0]->load(4, "assets\\pumpkinL");
+    Data.pumpkinChara.anims[0]->load(4, "assets\\pumpkinR");
     Data.pumpkinChara.anims[0]->setInterval(0.1f);
     Data.pumpkinChara.anims[1] = new ANIM;
-    Data.pumpkinChara.anims[1]->load(4, "assets\\pumpkinR");
+    Data.pumpkinChara.anims[1]->load(4, "assets\\pumpkinL");
     Data.pumpkinChara.anims[1]->setInterval(0.1f);
 
     Data.batChara.anims = new ANIM*[1];
@@ -124,6 +155,6 @@ void CONTAINER::LoadGraphics() {
     Data.explosionChara.anims[0]->load(48, "assets\\explosion\\a");
     Data.explosionChara.anims[0]->setInterval(0.016f);
     Data.explosionChara.anims[0]->setStartIdx(24);
-    //Data.explosionChara.anims[0]->noLoop();
+    Data.explosionChara.anims[0]->noLoop();
     Data.explosionChara.imgIdx = 24;
 }

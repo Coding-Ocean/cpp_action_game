@@ -27,7 +27,7 @@ public:
     ~MAP();
     void create();
     void init();
-    void update();
+    void update(float vecX);
     void draw();
     VECTOR2 world() { return Map.world; }
     int chipSize() { return Map.chipSize; }

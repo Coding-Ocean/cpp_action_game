@@ -16,6 +16,7 @@ private:
     int Total=0;
     DATA CharaMng;
     class CHARACTER** Characters = nullptr;
+    class PLAYER* Player = nullptr;
 public:
     CHARACTER_MANAGER(class GAME* game);
     ~CHARACTER_MANAGER();
@@ -24,4 +25,5 @@ public:
     void appear(char charaId, const VECTOR2& world, const VECTOR2& vec);
     void update();
     void draw();
+    class PLAYER* player() { return Player; }
 };

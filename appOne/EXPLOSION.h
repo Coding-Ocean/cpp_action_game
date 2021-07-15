@@ -7,5 +7,6 @@ public:
     EXPLOSION(class GAME* game);
     ~EXPLOSION();
     void create();
+    void update();
 };
 
