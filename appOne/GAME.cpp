@@ -25,7 +25,6 @@ GAME::~GAME() {
     delete Title;
     delete Container;
 }
-extern int gCnt;
 void GAME::run() {
     window(800, 600, full);
     hideCursor();
@@ -46,7 +45,6 @@ void GAME::run() {
         CurScene->proc();
         fill(255);
         print(delta);
-        print(gCnt);
     }
 }
 void GAME::setCurScene(SCENE* scene) { 

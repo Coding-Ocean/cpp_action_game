@@ -9,5 +9,5 @@ PLAYER::PLAYER(class GAME* game) :
 PLAYER::~PLAYER() {
 }
 void PLAYER::create() {
-    Chara = game()->container()->data().player;
+    Chara = game()->container()->data().playerChara;
 }

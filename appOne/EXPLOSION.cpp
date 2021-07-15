@@ -9,5 +9,5 @@ EXPLOSION::EXPLOSION(class GAME* game) :
 EXPLOSION::~EXPLOSION() {
 }
 void EXPLOSION::create() {
-    Chara = game()->container()->data().explosion;
+    Chara = game()->container()->data().explosionChara;
 }

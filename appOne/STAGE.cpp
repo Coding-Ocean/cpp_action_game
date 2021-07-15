@@ -23,7 +23,7 @@ void STAGE::update() {
     game()->characterManager()->update();
 }
 void STAGE::draw(){
-    clear();
+    clear(60,30,0);
     rectMode(CORNER);
     image(Stage.backImg, 0, 0);
     game()->map()->draw();

@@ -13,13 +13,13 @@ private:
         STAGE::DATA stage;
         FADE::DATA fade;
         MAP::DATA map;
-        CHARACTER::DATA player;
-        CHARACTER::DATA playerBullet;
-        CHARACTER::DATA pumpkin;
+        CHARACTER::DATA playerChara;
+        CHARACTER::DATA playerBulletChara;
+        CHARACTER::DATA pumpkinChara;
         CHARACTER::DATA batChara;
         BAT::DATA bat;
-        CHARACTER::DATA batBullet;
-        CHARACTER::DATA explosion;
+        CHARACTER::DATA batBulletChara;
+        CHARACTER::DATA explosionChara;
         CHARACTER_MANAGER::DATA charaMng;
     };
     DATA Data;

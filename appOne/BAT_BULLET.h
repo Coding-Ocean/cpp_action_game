@@ -9,6 +9,5 @@ public:
     void create();
     void appear(const VECTOR2& world, const VECTOR2& vec);
     void update();
-    void draw();
 };
 

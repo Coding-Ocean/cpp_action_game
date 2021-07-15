@@ -10,7 +10,7 @@ PLAYER_BULLET::PLAYER_BULLET(class GAME* game) :
 PLAYER_BULLET::~PLAYER_BULLET() {
 }
 void PLAYER_BULLET::create() {
-    Chara = game()->container()->data().playerBullet;
+    Chara = game()->container()->data().playerBulletChara;
 }
 void PLAYER_BULLET::appear(const VECTOR2& world, const VECTOR2& vec) {
     Chara.world = world;

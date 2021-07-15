@@ -9,5 +9,5 @@ PUMPKIN::PUMPKIN(class GAME* game) :
 PUMPKIN::~PUMPKIN() {
 }
 void PUMPKIN::create() {
-    Chara = game()->container()->data().pumpkin;
+    Chara = game()->container()->data().pumpkinChara;
 }
