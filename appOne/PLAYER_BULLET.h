@@ -7,7 +7,7 @@ public:
     PLAYER_BULLET(class GAME* game);
     ~PLAYER_BULLET();
     void create();
-    void appear(const VECTOR2& world, const VECTOR2& vec);
+    void appear(float wx , float wy, float vx, float vy);
     void update();
 };
 

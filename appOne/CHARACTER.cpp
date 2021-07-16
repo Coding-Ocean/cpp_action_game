@@ -12,21 +12,25 @@ CHARACTER::~CHARACTER(){
 void CHARACTER::create() {
 }
 void CHARACTER::init() {
+    Chara.wx = 0;
     Chara.hp = 0;
 }
-void CHARACTER::appear(const VECTOR2& world, const VECTOR2& vec) {
-    Chara.world = world;
+void CHARACTER::appear(float wx , float wy, float vx, float vy) {
+    Chara.wx = wx;
+    Chara.wy = wy;
     Chara.hp = 1;
 }
 void CHARACTER::update() {
-    if (Chara.world.x - game()->map()->world().x < -game()->map()->chipSize()) {
+    if (Chara.wx - game()->map()->wx() < -game()->map()->chipSize()) {
         Chara.hp = 0;
     }
 }
 void CHARACTER::draw() {
     imageColor(Chara.color);
-    VECTOR2 pos = Chara.world - game()->map()->world();
-    Chara.anims[Chara.animId]->draw(&Chara.imgIdx, &Chara.elapsedTime, pos);
+    float px = Chara.wx - game()->map()->wx();
+    float py = Chara.wy - game()->map()->wy();
+    Chara.anims[Chara.animId]->draw(&Chara.imgIdx, &Chara.elapsedTime,
+        px, py, Chara.angle, Chara.scale);
 }
 void CHARACTER::damage() {
     if (Chara.hp > 0) {

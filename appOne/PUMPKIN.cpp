@@ -13,11 +13,12 @@ void PUMPKIN::create() {
     Chara = game()->container()->data().pumpkinChara;
     Pumpkin = game()->container()->data().pumpkin;
 }
-void PUMPKIN::appear(const VECTOR2& world, const VECTOR2& vec){
-    Chara.world = world;
+void PUMPKIN::appear(float wx , float wy, float vx, float vy){
+    Chara.wx = wx;
+    Chara.wy = wy;
     Chara.hp = Chara.initHp;
-    Chara.vec.x = Pumpkin.initVecX;
-    Chara.vec.y = Pumpkin.initVecY;
+    Chara.vx = Pumpkin.initVecX;
+    Chara.vy = Pumpkin.initVecY;
     Chara.animId = Pumpkin.leftAnimId;
     Pumpkin.damageTime = 0;
     Pumpkin.fallFlag = 0;
@@ -26,46 +27,46 @@ void PUMPKIN::update(){
     //移動---------------------------------------------------------------------
     // 落下
     if (Pumpkin.fallFlag) {
-        Chara.vec.y += Pumpkin.gravity * delta;
-        Chara.world.y += Chara.vec.y;
+        Chara.vy += Pumpkin.gravity * delta;
+        Chara.wy += Chara.vy * 60 * delta;
     }
     // 現在の位置をとっておく
-    float curWorldX = Chara.world.x;
+    float curWorldX = Chara.wx;
     // 左右にうごく
-    Chara.world.x += Chara.vec.x * (Chara.speed * delta);
+    Chara.wx += Chara.vx * (Chara.speed * delta);
 
     //マップ-------------------------------------------------------------------
     // ブロックにぶつかったら向きを変える
     if (!Pumpkin.fallFlag) {
         //左に進んでいるとき
         if (Chara.animId == Pumpkin.leftAnimId) {
-            if (game()->map()->collisionCharaLeft(Chara.world.x, Chara.world.y)) {
+            if (game()->map()->collisionCharaLeft(Chara.wx, Chara.wy)) {
                 Chara.animId = Pumpkin.rightAnimId;
-                Chara.vec.x = -Chara.vec.x;
-                Chara.world.x = curWorldX;
+                Chara.vx = -Chara.vx;
+                Chara.wx = curWorldX;
             }
         }
         //右に進んでいるとき
         else {
-            if (game()->map()->collisionCharaRight(Chara.world.x, Chara.world.y)) {
+            if (game()->map()->collisionCharaRight(Chara.wx, Chara.wy)) {
                 Chara.animId = Pumpkin.leftAnimId;
-                Chara.vec.x = -Chara.vec.x;
-                Chara.world.x = curWorldX;
+                Chara.vx = -Chara.vx;
+                Chara.wx = curWorldX;
             }
         }
     }
     // 接地チェック（キャラの下にブロックがあるかどうか）
-    if (game()->map()->collisionCharaBottom(curWorldX, Chara.world.y)) {//接地または埋まっている
+    if (game()->map()->collisionCharaBottom(curWorldX, Chara.wy)) {//接地または埋まっている
         Pumpkin.fallFlag = 0;
-        Chara.vec.y = 0;
+        Chara.vy = 0;
         //埋まらないように高さを補正する
-        Chara.world.y = (int)Chara.world.y / game()->map()->chipSize() * (float)game()->map()->chipSize();
+        Chara.wy = (int)Chara.wy / game()->map()->chipSize() * (float)game()->map()->chipSize();
     }
     else {//接地していない
         Pumpkin.fallFlag = 1;//落とす
     }
     // ウィンドウの外に出たら消す
-    if (Chara.world.x < game()->map()->wDispLeft()) {
+    if (Chara.wx < game()->map()->wDispLeft()) {
         Chara.hp = 0;
     }
     //ダメージを受けたら瞬間だけ透明化する-------------------------------
@@ -82,7 +83,7 @@ void PUMPKIN::damage(){
         Pumpkin.damageTime = Pumpkin.damageInterval;
         Chara.hp--;
         if (Chara.hp == 0) {
-            game()->characterManager()->appear('f', Chara.world, VECTOR2(0, 0));
+            game()->characterManager()->appear(Pumpkin.explosionCharaId, Chara.wx, Chara.wy);
         }
     }
 }

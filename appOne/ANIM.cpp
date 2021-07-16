@@ -18,9 +18,8 @@ void ANIM::load(int numImages, const char* bodyName, const char* extName) {
         Images[i] = loadImage(filename);
     }
 }
-
 void ANIM::draw(int* idx, float* elapsedTime, 
-    const VECTOR2& pos, float angle, float scale) {
+    float px, float py, float angle, float scale) {
     if (!EndFlag) {
         *elapsedTime += delta;
         if (*elapsedTime >= Interval) {
@@ -36,7 +35,7 @@ void ANIM::draw(int* idx, float* elapsedTime,
                 }
             }
         }
-        image(Images[*idx], pos.x, pos.y, angle, scale);
+        image(Images[*idx], px, py, angle, scale);
     }
 }
 

@@ -13,9 +13,9 @@ void BAT::create() {
     Chara = game()->container()->data().batChara;
     Bat = game()->container()->data().bat;
 }
-void BAT::appear(const VECTOR2& world, const VECTOR2& vec) {
-    Chara.world = world;
-    Chara.vec = vec;
+void BAT::appear(float wx , float wy, float vx, float vy) {
+    Chara.wx = wx;
+    Chara.wy = wy;
     Chara.hp = Chara.initHp;
     Bat.triggerCnt = game()->container()->data().bat.triggerCnt;
 }
@@ -31,14 +31,13 @@ void BAT::update() {
             Bat.triggerCnt == Bat.trigger4th
             ) {
             game()->characterManager()->appear(Bat.bulletCharaId,
-                VECTOR2(Chara.world.x - Bat.bulletOffsetX, Chara.world.y),
-                VECTOR2(-1, 0));
+                Chara.wx - Bat.bulletOffsetX, Chara.wy, -1, 0);
         }
     }
 
     //マップ------------------------------------------------------------------------
     // ウィンドウの外に出た
-    if (Chara.world.x < game()->map()->wDispLeft()) {
+    if (Chara.wx < game()->map()->wDispLeft()) {
         Chara.hp = 0;
     }
 
@@ -57,7 +56,7 @@ void BAT::damage() {
         Bat.damageTime = Bat.damageInterval;
         Chara.hp--;
         if (Chara.hp == 0) {
-            game()->characterManager()->appear('f', Chara.world, VECTOR2(0, 0));
+            game()->characterManager()->appear(Bat.explosionCharaId, Chara.wx, Chara.wy);
         }
     }
 }

@@ -22,7 +22,7 @@ public:
     ~CHARACTER_MANAGER();
     void create();
     void init();
-    void appear(char charaId, const VECTOR2& world, const VECTOR2& vec);
+    void appear(char charaId, float wx, float wy, float vx=0, float vy=0);
     void update();
     void draw();
     class PLAYER* player() { return Player; }

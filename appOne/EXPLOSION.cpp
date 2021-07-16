@@ -1,3 +1,5 @@
+#include"graphic.h"
+#include"rand.h"
 #include"ANIM.h"
 #include"CONTAINER.h"
 #include"GAME.h"
@@ -14,7 +16,7 @@ void EXPLOSION::create() {
 void EXPLOSION::update() {
     if (Chara.anims[0]->end()) {
         Chara.hp = 0;
-        Chara.imgIdx = 24;
-        Chara.anims[0]->setEndFlag();
+        Chara.imgIdx = game()->container()->data().explosionChara.imgIdx;
+        Chara.anims[0]->resetEndFlag();
     }
 }

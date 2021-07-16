@@ -47,12 +47,12 @@ void CHARACTER_MANAGER::init() {
         Characters[i]->init();
     }
 }
-void CHARACTER_MANAGER::appear(char charaId, const VECTOR2& world, const VECTOR2& vec){
+void CHARACTER_MANAGER::appear(char charaId, float wx , float wy, float vx, float vy){
     // charaId‚Åw’è‚³‚ê‚½ƒLƒƒƒ‰‚ğoŒ»‚³‚¹‚é
     for (int i = 0; i < Total; i++) {
         if (Characters[i]->charaId() == charaId) {
             if (Characters[i]->hp() <= 0) {
-                Characters[i]->appear(world, vec);
+                Characters[i]->appear(wx, wy, vx, vy);
                 break;
             }
         }

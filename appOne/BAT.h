@@ -18,8 +18,7 @@ public:
         float damageTime = 0;
         float damageInterval = 0;
         float alphaLowVal = 0;
-        float appearBulletOffsetX = 0;
-        static int idx;
+        char explosionCharaId = 0;
     };
 private:
     DATA Bat;
@@ -27,7 +26,7 @@ public:
     BAT(class GAME* game);
     ~BAT();
     void create();
-    void appear(const VECTOR2& world, const VECTOR2& vec);
+    void appear(float wx , float wy, float vx, float vy);
     void update();
     void damage();
 };

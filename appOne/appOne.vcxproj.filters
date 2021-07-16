@@ -17,6 +17,12 @@
     <Filter Include="scene\base">
       <UniqueIdentifier>{e64dba40-a118-4f9a-9d22-299551c399f1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="character">
+      <UniqueIdentifier>{9875cba5-eeac-442a-9958-143fa2e7ab7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="character\base,manager">
+      <UniqueIdentifier>{db941af4-e7d9-464c-a1eb-9f318858821d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc">
@@ -47,22 +53,42 @@
     <ClCompile Include="CONTAINER.cpp">
       <Filter>container</Filter>
     </ClCompile>
-    <ClCompile Include="MAP.cpp" />
     <ClCompile Include="FADE.cpp">
       <Filter>scene</Filter>
     </ClCompile>
     <ClCompile Include="SCENE.cpp">
       <Filter>scene\base</Filter>
     </ClCompile>
-    <ClCompile Include="ANIM.cpp" />
-    <ClCompile Include="BAT.cpp" />
-    <ClCompile Include="CHARACTER_MANAGER.cpp" />
-    <ClCompile Include="CHARACTER.cpp" />
-    <ClCompile Include="PLAYER.cpp" />
-    <ClCompile Include="PLAYER_BULLET.cpp" />
-    <ClCompile Include="PUMPKIN.cpp" />
-    <ClCompile Include="BAT_BULLET.cpp" />
-    <ClCompile Include="EXPLOSION.cpp" />
+    <ClCompile Include="ANIM.cpp">
+      <Filter>character</Filter>
+    </ClCompile>
+    <ClCompile Include="BAT.cpp">
+      <Filter>character</Filter>
+    </ClCompile>
+    <ClCompile Include="BAT_BULLET.cpp">
+      <Filter>character</Filter>
+    </ClCompile>
+    <ClCompile Include="EXPLOSION.cpp">
+      <Filter>character</Filter>
+    </ClCompile>
+    <ClCompile Include="MAP.cpp">
+      <Filter>character</Filter>
+    </ClCompile>
+    <ClCompile Include="PLAYER.cpp">
+      <Filter>character</Filter>
+    </ClCompile>
+    <ClCompile Include="PLAYER_BULLET.cpp">
+      <Filter>character</Filter>
+    </ClCompile>
+    <ClCompile Include="PUMPKIN.cpp">
+      <Filter>character</Filter>
+    </ClCompile>
+    <ClCompile Include="CHARACTER.cpp">
+      <Filter>character\base,manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CHARACTER_MANAGER.cpp">
+      <Filter>character\base,manager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GAME.h">
@@ -80,24 +106,46 @@
     <ClInclude Include="CONTAINER.h">
       <Filter>container</Filter>
     </ClInclude>
-    <ClInclude Include="MAP.h" />
     <ClInclude Include="FADE.h">
       <Filter>scene</Filter>
     </ClInclude>
     <ClInclude Include="SCENE.h">
       <Filter>scene\base</Filter>
     </ClInclude>
-    <ClInclude Include="CHARACTER.h" />
-    <ClInclude Include="ANIM.h" />
-    <ClInclude Include="BAT.h" />
-    <ClInclude Include="CHARACTER_MANAGER.h" />
-    <ClInclude Include="PLAYER.h" />
-    <ClInclude Include="PLAYER_BULLET.h" />
-    <ClInclude Include="PUMPKIN.h" />
-    <ClInclude Include="BAT_BULLET.h" />
-    <ClInclude Include="EXPLOSION.h" />
+    <ClInclude Include="ANIM.h">
+      <Filter>character</Filter>
+    </ClInclude>
+    <ClInclude Include="BAT.h">
+      <Filter>character</Filter>
+    </ClInclude>
+    <ClInclude Include="BAT_BULLET.h">
+      <Filter>character</Filter>
+    </ClInclude>
+    <ClInclude Include="EXPLOSION.h">
+      <Filter>character</Filter>
+    </ClInclude>
+    <ClInclude Include="MAP.h">
+      <Filter>character</Filter>
+    </ClInclude>
+    <ClInclude Include="PLAYER.h">
+      <Filter>character</Filter>
+    </ClInclude>
+    <ClInclude Include="PLAYER_BULLET.h">
+      <Filter>character</Filter>
+    </ClInclude>
+    <ClInclude Include="PUMPKIN.h">
+      <Filter>character</Filter>
+    </ClInclude>
+    <ClInclude Include="CHARACTER.h">
+      <Filter>character\base,manager</Filter>
+    </ClInclude>
+    <ClInclude Include="CHARACTER_MANAGER.h">
+      <Filter>character\base,manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="assets\map1.txt" />
+    <Text Include="assets\map1.txt">
+      <Filter>character</Filter>
+    </Text>
   </ItemGroup>
 </Project>

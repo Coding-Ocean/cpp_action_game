@@ -1,3 +1,4 @@
+#include"window.h"
 #include"graphic.h"
 #include"input.h"
 #include"GAME.h"
@@ -9,40 +10,51 @@
 STAGE::STAGE(class GAME* game):
 SCENE(game){
 }
-STAGE::~STAGE(){}
+STAGE::~STAGE(){
+}
 void STAGE::create(){
     Stage = game()->container()->data().stage;
 }
 void STAGE::init() {
+    Stage.backToTitleTime = game()->container()->data().stage.backToTitleTime;
     game()->map()->init();
     game()->characterManager()->init();
     game()->fade()->inTrigger();
 }
 void STAGE::update() {
     game()->characterManager()->update();
+    game()->map()->update();
 }
 void STAGE::draw(){
-    clear(60,30,0);
-    rectMode(CORNER);
-    imageColor(255, 255, 255, 255);
-    image(Stage.backImg, 0, 0);
+    BackGround();
     game()->map()->draw();
     game()->characterManager()->draw();
-
     if (game()->characterManager()->player()->died()) {
-        //game()->characterManager()->player()->update();
-        //game()->characterManager()->player()->draw();
-        imageColor(255, 255, 255, 255);
-        image(Stage.gameOverImg, 0, 270);
+        Logo(Stage.gameOverImg, Stage.gameOverColor);
     }
-    if (game()->characterManager()->player()->survived()) {
-        imageColor(255, 255, 255, 255);
-        image(Stage.stageClearImg, 0, 270);
+    else if (game()->characterManager()->player()->survived()) {
+        Logo(Stage.stageClearImg, Stage.stageClearColor);
     }
+#ifdef _DEBUG
+    fill(255);
+    printSize(50);
+    print(delta);
+#endif
     game()->fade()->draw();
 }
+void STAGE::BackGround(){
+    clear();
+    rectMode(CORNER);
+    imageColor(Stage.backColor);
+    image(Stage.backImg, 0, 0);
+}
+void STAGE::Logo(int img,const COLOR& color) {
+    imageColor(color);
+    image(img, Stage.logoPx, Stage.logoPy);
+    Stage.backToTitleTime -= delta;
+}
 void STAGE::nextScene() {
-    if (isTrigger(KEY_SPACE)) {
+    if (Stage.backToTitleTime <= 0) {
         game()->fade()->outTrigger();
     }
     if (game()->fade()->outEndFlag()) {

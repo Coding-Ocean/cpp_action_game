@@ -14,6 +14,7 @@ public:
         float alphaLowVal = 0;
         float damageTime = 0;
         float damageInterval = 0;
+        char explosionCharaId = 0;
     };
 private:
     DATA Pumpkin;
@@ -21,7 +22,7 @@ public:
     PUMPKIN(class GAME* game);
     ~PUMPKIN();
     void create();
-    void appear(const VECTOR2& world, const VECTOR2& vec);
+    void appear(float wx , float wy, float vx, float vy);
     void update();
     void damage();
 };

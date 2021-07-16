@@ -11,7 +11,6 @@ class CONTAINER
 {
 private:
     struct DATA {
-        TITLE::DATA title;
         STAGE::DATA stage;
         FADE::DATA fade;
         MAP::DATA map;

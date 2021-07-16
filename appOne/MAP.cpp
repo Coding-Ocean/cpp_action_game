@@ -56,16 +56,19 @@ void MAP::init() {
     Map.dispCols = (int)width / Map.chipSize + 1;//表示すべき列数
     Map.worldWidth = (float)Map.chipSize * (Map.cols - 2);//ワールドの横幅
     Map.endWorldX = Map.worldWidth - width;//表示できる最後の座標
-    Map.world.x = 0.0f;//現在表示しているワールド座標
+    Map.wx = 0.0f;//現在表示しているワールド座標
 }
-void MAP::update(float vecX) {
-    Map.world.x += vecX;
-    if (Map.world.x > Map.endWorldX) {
-        Map.world.x = Map.endWorldX;
+void MAP::update() {
+    float vx = game()->characterManager()->player()->wx() - Map.wx - Map.centerX;
+    if (vx > 0) {
+        Map.wx += vx;
+    }
+    if (Map.wx > Map.endWorldX) {
+        Map.wx = Map.endWorldX;
     }
 }
 void MAP::draw() {
-    int startCol = (int)Map.world.x / Map.chipSize;//表示開始列
+    int startCol = (int)Map.wx / Map.chipSize;//表示開始列
     int endCol = startCol + Map.dispCols;//表示終了列
     for (int c = startCol; c < endCol; c++) {
         float wx = (float)Map.chipSize * c;
@@ -73,11 +76,13 @@ void MAP::draw() {
             float wy = (float)Map.chipSize * r;
             char charaId = Map.data[r * Map.cols + c];
             if (charaId >= '0' && charaId <= '9') {
-                image(Map.blockImg, wx - Map.world.x, wy);
+                float px = wx - Map.wx;
+                float py = wy - Map.wy;
+                if     (charaId == '1')image(Map.blockImg, px, py);
+                else if(charaId == '2')image(Map.goalImg, px, py);
             }
             else if (charaId >= 'a' && charaId <= 'z') {
-                game()->characterManager()->appear(charaId,
-                    VECTOR2(wx, wy), VECTOR2(0, 0));
+                game()->characterManager()->appear(charaId, wx, wy);
                 Map.data[r * Map.cols + c] = '.';
             }
         }
@@ -135,10 +140,10 @@ bool MAP::collisionCharaRect(float wLeft, float wTop, float wRight, float wBotto
 }
 //ウィンドウからのはみだし判定用---------------------------------------------------------
 float MAP::wDispLeft() {
-    return Map.world.x - Map.chipSize;
+    return Map.wx - Map.chipSize;
 }
 float MAP::wDispRight() {
-    return Map.world.x + width;
+    return Map.wx + width;
 }
 
 

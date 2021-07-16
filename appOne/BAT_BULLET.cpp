@@ -12,19 +12,20 @@ BAT_BULLET::~BAT_BULLET() {
 void BAT_BULLET::create() {
     Chara = game()->container()->data().batBulletChara;
 }
-void BAT_BULLET::appear(const VECTOR2& world, const VECTOR2& vec) {
-    Chara.world = world;
-    Chara.vec = vec;
+void BAT_BULLET::appear(float wx , float wy, float vx, float vy) {
+    Chara.wx = wx;
+    Chara.wy = wy;
+    Chara.vx = vx;
     Chara.hp = Chara.initHp;
 }
 void BAT_BULLET::update() {
     //移動--------------------------------------------------------------------------
-    Chara.world += Chara.vec * (Chara.speed * delta);
+    Chara.wx += Chara.vx * (Chara.speed * delta);
     //マップ------------------------------------------------------------------------
     // 弾が、ブロックに当たった、または、ウィンドウの外に出た
     if (game()->map()->collisionCharaRect(wLeft(), wTop(), wRight(), wBottom()) ||
-        Chara.world.x < game()->map()->wDispLeft() || 
-        Chara.world.x > game()->map()->wDispRight()) {
+        Chara.wx < game()->map()->wDispLeft() || 
+        Chara.wx > game()->map()->wDispRight()) {
         Chara.hp = 0;
     }
 }

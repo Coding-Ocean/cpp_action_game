@@ -1,6 +1,5 @@
 #pragma once
 #include"GAME_OBJECT.h"
-#include"VECTOR2.h"
 #include"COLOR.h"
 class CHARACTER :
     public GAME_OBJECT
@@ -15,9 +14,13 @@ public:
 
         char charaId = 0;
         int groupId = 0;
-        VECTOR2 world;
-        VECTOR2 vec;
+        float wx = 0;
+        float wy = 0;
+        float vx = 0;
+        float vy = 0;
         float speed = 0;
+        float angle = 0;
+        float scale = 1;
 
         int hp = 0;
         int initHp = 0;
@@ -33,17 +36,17 @@ public:
     virtual ~CHARACTER();
     virtual void create();
     virtual void init();
-    virtual void appear(const VECTOR2& world, const VECTOR2& vec);
+    virtual void appear(float wx , float wy, float vx, float vy);
     virtual void update();
     virtual void draw();
     virtual void damage();
     int   hp() { return Chara.hp; }
     int   groupId() { return Chara.groupId; }
     char  charaId() { return Chara.charaId; }
-    float wLeft() { return Chara.world.x + Chara.offsetLeft; }
-    float wTop() { return Chara.world.y + Chara.offsetTop; }
-    float wRight() { return Chara.world.x + Chara.offsetRight; }
-    float wBottom() { return Chara.world.y + Chara.offsetBottom; }
+    float wLeft() { return Chara.wx + Chara.offsetLeft; }
+    float wTop() { return Chara.wy + Chara.offsetTop; }
+    float wRight() { return Chara.wx + Chara.offsetRight; }
+    float wBottom() { return Chara.wy + Chara.offsetBottom; }
     void setImgIdx(int i) { Chara.imgIdx = i; }
 };
 

@@ -8,9 +8,17 @@ public:
         int backImg = 0;
         int stageClearImg = 0;
         int gameOverImg = 0;
+        float backToTitleTime = 0;
+        COLOR backColor;
+        COLOR gameOverColor;
+        COLOR stageClearColor;
+        float logoPx = 0;
+        float logoPy = 0;
     };
 private:
     DATA Stage;
+    void BackGround();
+    void Logo(int img, const COLOR& color);
 public:
     STAGE(class GAME* game);
     ~STAGE();

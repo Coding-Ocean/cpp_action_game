@@ -26,7 +26,7 @@ GAME::~GAME() {
     delete Container;
 }
 void GAME::run() {
-    window(800, 600, full);
+    window(1050, 590, full);
     hideCursor();
     
     Container->load();
@@ -37,14 +37,12 @@ void GAME::run() {
     Map->create();
     CharacterManager->create();
     
-    CurScene = Stage;
+    CurScene = Title;
     CurScene->init();
     initDeltaTime();
     while (notQuit) {
         setDeltaTime();
         CurScene->proc();
-        fill(255);
-        print(delta);
     }
 }
 void GAME::setCurScene(SCENE* scene) { 
