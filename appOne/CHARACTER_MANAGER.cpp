@@ -88,7 +88,6 @@ void CHARACTER_MANAGER::update() {
             }
         }
     }
-
 }
 void CHARACTER_MANAGER::draw() {
     for (int i = 0; i < Total; i++) {

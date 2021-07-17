@@ -4,8 +4,7 @@ class PLAYER_BULLET :
     public CHARACTER
 {
 public:
-    PLAYER_BULLET(class GAME* game);
-    ~PLAYER_BULLET();
+    PLAYER_BULLET(class GAME* game) :CHARACTER(game) {}
     void create();
     void appear(float wx , float wy, float vx, float vy);
     void update();

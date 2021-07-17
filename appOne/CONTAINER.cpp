@@ -4,15 +4,11 @@
 CONTAINER::~CONTAINER() {
     delete Data.explosionChara.anims[0];
     delete[] Data.explosionChara.anims;
-    delete Data.batBulletChara.anims[0];
-    delete[] Data.batBulletChara.anims;
     delete Data.batChara.anims[0];
     delete[] Data.batChara.anims;
     delete Data.pumpkinChara.anims[1];
     delete Data.pumpkinChara.anims[0];
     delete[] Data.pumpkinChara.anims;
-    delete Data.playerBulletChara.anims[0];
-    delete[] Data.playerBulletChara.anims;
     delete Data.playerChara.anims[1];
     delete Data.playerChara.anims[0];
     delete[] Data.playerChara.anims;
@@ -38,7 +34,7 @@ void CONTAINER::CreateData() {
     Data.map.centerX = width / 2 - Data.map.chipSize / 2;
 
     Data.playerChara.charaId = MAP::PLAYER_ID;
-    Data.playerChara.initHp = 1;
+    Data.playerChara.hp = 1;
     Data.playerChara.groupId = 0;//味方グループは0
     Data.playerChara.speed = 3.4f * 60;
     Data.playerChara.offsetLeft = 10.0f;
@@ -56,7 +52,7 @@ void CONTAINER::CreateData() {
 
     Data.playerBulletChara.charaId = MAP::PLAYER_BULLET_ID;
     Data.playerBulletChara.groupId = 0;//味方グループは0 
-    Data.playerBulletChara.initHp = 1;
+    Data.playerBulletChara.hp = 1;
     Data.playerBulletChara.speed = 4.7f*60;
     Data.playerBulletChara.offsetLeft = 20.0f;
     Data.playerBulletChara.offsetTop = 20.0f;
@@ -65,7 +61,7 @@ void CONTAINER::CreateData() {
     
     Data.pumpkinChara.charaId = MAP::PUMPKIN_ID;
     Data.pumpkinChara.groupId = 1;//敵グループは1
-    Data.pumpkinChara.initHp = 4;
+    Data.pumpkinChara.hp = 4;
     Data.pumpkinChara.speed = 1.4f * 60;
     Data.pumpkinChara.offsetLeft = 10.0f;
     Data.pumpkinChara.offsetTop = 12.0f;
@@ -78,10 +74,11 @@ void CONTAINER::CreateData() {
     Data.pumpkin.initVecY = 0;
     Data.pumpkin.gravity = 0.8f * 60;
     Data.pumpkin.alphaLowVal = 25;
+    Data.pumpkin.damageColor = COLOR(255, 0, 0);
     Data.pumpkin.explosionCharaId = MAP::EXPLOSION_ID;
 
     Data.batChara.charaId = MAP::BAT_ID;
-    Data.batChara.initHp = 10;
+    Data.batChara.hp = 10;
     Data.batChara.groupId = 1;//敵グループは1
     Data.batChara.offsetLeft = 10.0f;
     Data.batChara.offsetTop = 10.0f;
@@ -99,12 +96,13 @@ void CONTAINER::CreateData() {
     Data.bat.damageTime = 0;
     Data.bat.damageInterval = 5*0.016f;
     Data.bat.bulletOffsetX = 20.0f;
-    Data.bat.alphaLowVal = 25;
     Data.bat.explosionCharaId = MAP::EXPLOSION_ID;
+    Data.bat.damageColor = COLOR(255, 0, 0, 25);
+    Data.bat.normalColor = COLOR(255, 255, 255);
 
     Data.batBulletChara.charaId = MAP::BAT_BULLET_ID;
     Data.batBulletChara.groupId = 1;//敵グループは1
-    Data.batBulletChara.initHp = 1;
+    Data.batBulletChara.hp = 1;
     Data.batBulletChara.speed = 4.7f*60;
     Data.batBulletChara.offsetLeft = 20.0f;
     Data.batBulletChara.offsetTop = 20.0f;
@@ -129,42 +127,26 @@ void CONTAINER::LoadGraphics() {
     Data.map.blockImg = loadImage("assets\\block.png");
     Data.map.goalImg = loadImage("assets\\goal.png");
     
+    //アニメーションのパターン数だけポインタ配列を用意
     Data.playerChara.anims = new ANIM * [2];
-    Data.playerChara.anims[0] = new ANIM;
-    Data.playerChara.anims[0]->load(2, "assets\\playerR");
-    Data.playerChara.anims[0]->setInterval(0.1f);
-    Data.playerChara.anims[1] = new ANIM;
-    Data.playerChara.anims[1]->load(2, "assets\\playerL");
-    Data.playerChara.anims[1]->setInterval(0.1f);
+    //コンストラクタのパラメタ
+    // ( 画像枚数、ファイル名(連番無し、拡張子無し)、インターバル時間 )
+    Data.playerChara.anims[0] = new ANIM(2, "assets\\playerR", 0.1f);
+    Data.playerChara.anims[1] = new ANIM(2, "assets\\playerL", 0.1f);
 
-    Data.playerBulletChara.anims = new ANIM * [1];
-    Data.playerBulletChara.anims[0] = new ANIM;
-    Data.playerBulletChara.anims[0]->load(1, "assets\\playerBullet");
-    Data.playerBulletChara.anims[0]->setInterval(0.1f);
+    Data.playerBulletChara.img = loadImage("assets\\playerBullet.png");
 
     Data.pumpkinChara.anims = new ANIM * [2];
-    Data.pumpkinChara.anims[0] = new ANIM;
-    Data.pumpkinChara.anims[0]->load(4, "assets\\pumpkinR");
-    Data.pumpkinChara.anims[0]->setInterval(0.1f);
-    Data.pumpkinChara.anims[1] = new ANIM;
-    Data.pumpkinChara.anims[1]->load(4, "assets\\pumpkinL");
-    Data.pumpkinChara.anims[1]->setInterval(0.1f);
+    Data.pumpkinChara.anims[0] = new ANIM(4, "assets\\pumpkinR", 0.1f);
+    Data.pumpkinChara.anims[1] = new ANIM(4, "assets\\pumpkinL", 0.1f);
 
     Data.batChara.anims = new ANIM * [1];
-    Data.batChara.anims[0] = new ANIM;
-    Data.batChara.anims[0]->load(4, "assets\\bat");
-    Data.batChara.anims[0]->setInterval(0.1f);
+    Data.batChara.anims[0] = new ANIM(4, "assets\\bat", 0.1f);
 
-    Data.batBulletChara.anims = new ANIM * [1];
-    Data.batBulletChara.anims[0] = new ANIM;
-    Data.batBulletChara.anims[0]->load(1, "assets\\batBullet");
-    Data.batBulletChara.anims[0]->setInterval(0.1f);
+    Data.batBulletChara.img = loadImage("assets\\batBullet.png");
 
     Data.explosionChara.anims = new ANIM * [1];
-    Data.explosionChara.anims[0] = new ANIM;
-    Data.explosionChara.anims[0]->load(52, "assets\\explosion\\a");
-    Data.explosionChara.anims[0]->setInterval(0.032f);
-    Data.explosionChara.anims[0]->setStartIdx(16);
+    Data.explosionChara.anims[0] = new ANIM(52, "assets\\explosion\\a", 0.032f);
     Data.explosionChara.anims[0]->noLoop();
-    Data.explosionChara.imgIdx = 16;
+    Data.explosionChara.imgIdx = 16;//←start index
 }

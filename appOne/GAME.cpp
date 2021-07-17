@@ -8,7 +8,6 @@
 #include"MAP.h"
 #include"CHARACTER_MANAGER.h"
 #include"GAME.h"
-
 GAME::GAME() {
     Container = new CONTAINER();
     Title = new TITLE(this);

@@ -59,10 +59,8 @@ void MAP::init() {
     Map.wx = 0.0f;//現在表示しているワールド座標
 }
 void MAP::update() {
-    float vx = game()->characterManager()->player()->wx() - Map.wx - Map.centerX;
-    if (vx > 0) {
-        Map.wx += vx;
-    }
+    //プレイヤーが画面の中央を超えた分だけスクロール
+    Map.wx += game()->characterManager()->player()->overCenterVx();
     if (Map.wx > Map.endWorldX) {
         Map.wx = Map.endWorldX;
     }

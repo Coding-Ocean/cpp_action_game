@@ -6,12 +6,16 @@ class CHARACTER :
 {
 public:
     struct DATA {
-        class ANIM** anims = 0;
+        //ìÆâÊ
+        class ANIM** anims = nullptr;
         int animId = 0;
         int imgIdx = 0;
         float elapsedTime = 0;
+        //ê√é~âÊ
+        int img = 0;
+        //çáê¨êF
         COLOR color;
-
+        
         char charaId = 0;
         int groupId = 0;
         float wx = 0;
@@ -23,7 +27,6 @@ public:
         float scale = 1;
 
         int hp = 0;
-        int initHp = 0;
         float offsetLeft = 0;
         float offsetTop = 0;
         float offsetRight = 0;
@@ -33,7 +36,6 @@ protected:
     DATA Chara;
 public:
     CHARACTER(class GAME* game);
-    virtual ~CHARACTER();
     virtual void create();
     virtual void init();
     virtual void appear(float wx , float wy, float vx, float vy);

@@ -5,18 +5,17 @@ private:
     int NumImages = 0;    //‰æ‘œ–‡”
     int* Images = 0;      //‰æ‘œ”Ô†”z—ñ
     float Interval = 1; //‰æ‘œØ‚è‘Ö‚¦ŠÔŠu
-    int LoopMode = 1;
+    int LoopFlag = 1;
     bool EndFlag = false;
-    int StartIdx = 0;
 public:
     ANIM();
+    ANIM(int numImages, const char* bodyName, float interval);
     ~ANIM();
     void load(int numImages, const char* bodyName, const char* extName="png");
     void draw(int* idx, float* elapsed, float px, float py, float angle=0, float scale=1 );
-    void noLoop() { LoopMode = 0; }
-    void setStartIdx(int idx) { StartIdx = idx; }
-    void resetEndFlag() { EndFlag = false; }
-    bool end() { return EndFlag; }
     void setInterval(float interval) { Interval = interval; }
+    void resetEndFlag() { EndFlag = false; }
+    void noLoop() { LoopFlag = 0; }
+    bool end() { return EndFlag; }
 };
 

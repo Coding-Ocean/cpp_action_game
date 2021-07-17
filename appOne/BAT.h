@@ -17,14 +17,14 @@ public:
         char bulletCharaId = 0;
         float damageTime = 0;
         float damageInterval = 0;
-        float alphaLowVal = 0;
         char explosionCharaId = 0;
+        COLOR damageColor;
+        COLOR normalColor;
     };
 private:
     DATA Bat;
 public:
-    BAT(class GAME* game);
-    ~BAT();
+    BAT(class GAME* game) :CHARACTER(game) {}
     void create();
     void appear(float wx , float wy, float vx, float vy);
     void update();

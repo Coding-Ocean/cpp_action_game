@@ -20,8 +20,11 @@
     <Filter Include="character">
       <UniqueIdentifier>{9875cba5-eeac-442a-9958-143fa2e7ab7d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="character\base,manager">
+    <Filter Include="character\anim,base,manager">
       <UniqueIdentifier>{db941af4-e7d9-464c-a1eb-9f318858821d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="map">
+      <UniqueIdentifier>{4c7bfe9f-0358-4bff-94b4-7e0384f78aab}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -59,9 +62,6 @@
     <ClCompile Include="SCENE.cpp">
       <Filter>scene\base</Filter>
     </ClCompile>
-    <ClCompile Include="ANIM.cpp">
-      <Filter>character</Filter>
-    </ClCompile>
     <ClCompile Include="BAT.cpp">
       <Filter>character</Filter>
     </ClCompile>
@@ -69,9 +69,6 @@
       <Filter>character</Filter>
     </ClCompile>
     <ClCompile Include="EXPLOSION.cpp">
-      <Filter>character</Filter>
-    </ClCompile>
-    <ClCompile Include="MAP.cpp">
       <Filter>character</Filter>
     </ClCompile>
     <ClCompile Include="PLAYER.cpp">
@@ -84,10 +81,16 @@
       <Filter>character</Filter>
     </ClCompile>
     <ClCompile Include="CHARACTER.cpp">
-      <Filter>character\base,manager</Filter>
+      <Filter>character\anim,base,manager</Filter>
     </ClCompile>
     <ClCompile Include="CHARACTER_MANAGER.cpp">
-      <Filter>character\base,manager</Filter>
+      <Filter>character\anim,base,manager</Filter>
+    </ClCompile>
+    <ClCompile Include="ANIM.cpp">
+      <Filter>character\anim,base,manager</Filter>
+    </ClCompile>
+    <ClCompile Include="MAP.cpp">
+      <Filter>map</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -112,9 +115,6 @@
     <ClInclude Include="SCENE.h">
       <Filter>scene\base</Filter>
     </ClInclude>
-    <ClInclude Include="ANIM.h">
-      <Filter>character</Filter>
-    </ClInclude>
     <ClInclude Include="BAT.h">
       <Filter>character</Filter>
     </ClInclude>
@@ -122,9 +122,6 @@
       <Filter>character</Filter>
     </ClInclude>
     <ClInclude Include="EXPLOSION.h">
-      <Filter>character</Filter>
-    </ClInclude>
-    <ClInclude Include="MAP.h">
       <Filter>character</Filter>
     </ClInclude>
     <ClInclude Include="PLAYER.h">
@@ -137,15 +134,21 @@
       <Filter>character</Filter>
     </ClInclude>
     <ClInclude Include="CHARACTER.h">
-      <Filter>character\base,manager</Filter>
+      <Filter>character\anim,base,manager</Filter>
     </ClInclude>
     <ClInclude Include="CHARACTER_MANAGER.h">
-      <Filter>character\base,manager</Filter>
+      <Filter>character\anim,base,manager</Filter>
+    </ClInclude>
+    <ClInclude Include="ANIM.h">
+      <Filter>character\anim,base,manager</Filter>
+    </ClInclude>
+    <ClInclude Include="MAP.h">
+      <Filter>map</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="assets\map1.txt">
-      <Filter>character</Filter>
+      <Filter>map</Filter>
     </Text>
   </ItemGroup>
 </Project>

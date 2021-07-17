@@ -3,10 +3,15 @@
 #include"ANIM.h"
 ANIM::ANIM() {
 }
-//開放。確保していない時は開放しない。念のため0クリア。など安全な開放をする。
+
+ANIM::ANIM(int numImages, const char* bodyName, float interval){
+    load(numImages, bodyName);
+    Interval = interval;
+}
 ANIM::~ANIM() {
     if (Images) { delete[] Images; Images = 0; }
 }
+
 //アニメーション画像ファイル名に２桁連番が降ってあることが前提
 //(画像枚数、連番無し拡張子無しファイル名)を指定してアニメーションデータをロード
 void ANIM::load(int numImages, const char* bodyName, const char* extName) {
@@ -18,26 +23,25 @@ void ANIM::load(int numImages, const char* bodyName, const char* extName) {
         Images[i] = loadImage(filename);
     }
 }
+
 void ANIM::draw(int* idx, float* elapsedTime, 
     float px, float py, float angle, float scale) {
-    if (!EndFlag) {
-        *elapsedTime += delta;
-        if (*elapsedTime >= Interval) {
-            *elapsedTime -= Interval;
-            (*idx)++;
-            if ((*idx) >= NumImages) {
-                if (LoopMode) {
-                    (*idx) = StartIdx;
-                }
-                else {
-                    EndFlag = true;
-                    (*idx)--;
-                }
+    //idxの更新
+    *elapsedTime += delta;
+    if (*elapsedTime >= Interval) {
+        *elapsedTime -= Interval;
+        (*idx)++;
+        if (*idx >= NumImages) {
+            if (LoopFlag) {
+                *idx = 0;
+            }
+            else {
+                //爆発など一回のみ再生する場合
+                EndFlag = true;
+                (*idx)--;
             }
         }
-        image(Images[*idx], px, py, angle, scale);
     }
+    //draw
+    image(Images[*idx], px, py, angle, scale);
 }
-
-
-

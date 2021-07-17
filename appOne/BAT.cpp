@@ -4,19 +4,14 @@
 #include"GAME.h"
 #include"MAP.h"
 #include "BAT.h"
-BAT::BAT(class GAME* game) :
-    CHARACTER(game) {
-}
-BAT::~BAT() {
-}
 void BAT::create() {
     Chara = game()->container()->data().batChara;
     Bat = game()->container()->data().bat;
 }
 void BAT::appear(float wx , float wy, float vx, float vy) {
+    Chara.hp = game()->container()->data().batChara.hp;
     Chara.wx = wx;
     Chara.wy = wy;
-    Chara.hp = Chara.initHp;
     Bat.triggerCnt = game()->container()->data().bat.triggerCnt;
 }
 void BAT::update() {
@@ -34,21 +29,18 @@ void BAT::update() {
                 Chara.wx - Bat.bulletOffsetX, Chara.wy, -1, 0);
         }
     }
-
     //マップ------------------------------------------------------------------------
     // ウィンドウの外に出た
     if (Chara.wx < game()->map()->wDispLeft()) {
         Chara.hp = 0;
     }
-
-    //ダメージを受けたら数フレームだけ透明化する------------------------------------
+    //ダメージを受けたときちょっとだけ透明化する------------------------------------
     if (Bat.damageTime > 0) {
         Bat.damageTime -= delta;
-        Chara.color.a = Bat.alphaLowVal;
+        Chara.color = Bat.damageColor;
     }
     else {
-        Chara.color.a = 255;
-        Bat.damageTime = 0;
+        Chara.color= Bat.normalColor;
     }
 }
 void BAT::damage() {
@@ -56,7 +48,8 @@ void BAT::damage() {
         Bat.damageTime = Bat.damageInterval;
         Chara.hp--;
         if (Chara.hp == 0) {
-            game()->characterManager()->appear(Bat.explosionCharaId, Chara.wx, Chara.wy);
+            game()->characterManager()->appear(Bat.explosionCharaId, 
+                Chara.wx, Chara.wy);
         }
     }
 }
