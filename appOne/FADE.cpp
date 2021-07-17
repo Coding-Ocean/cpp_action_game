@@ -3,11 +3,6 @@
 #include"GAME.h"
 #include"CONTAINER.h"
 #include "FADE.h"
-FADE::FADE(class GAME* game):
-GAME_OBJECT(game){
-}
-FADE::~FADE(){
-}
 void FADE::create() {
     Fade = game()->container()->data().fade;
 }

@@ -17,7 +17,7 @@ void BAT_BULLET::update() {
     //移動--------------------------------------------------------------------------
     Chara.wx += Chara.vx * (Chara.speed * delta);
     //マップ------------------------------------------------------------------------
-    // 弾が、ブロックに当たった、または、ウィンドウの外に出た
+    // 弾が、マップチップに当たった、または、ウィンドウの外に出た
     if (game()->map()->collisionCharaRect(wLeft(), wTop(), wRight(), wBottom()) ||
         Chara.wx < game()->map()->wDispLeft() || 
         Chara.wx > game()->map()->wDispRight()) {

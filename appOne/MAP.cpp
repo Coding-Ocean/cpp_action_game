@@ -86,8 +86,8 @@ void MAP::draw() {
         }
     }
 }
-//ブロックとキャラの当たり判定用関数群---------------------------------------------------
-//　指定されたワールド座標( wx wy )が、ブロックの中にはいっているかチェックする
+//マップチップとキャラの当たり判定用関数群---------------------------------------------------
+//　指定されたワールド座標( wx wy )が、マップチップの中にはいっているかチェックする
 bool MAP::collisionCheck(float wx, float wy) {
     //ワールド座標からマップDataの列colと行rowを求める
     int col = (int)wx / Map.chipSize;
@@ -96,39 +96,39 @@ bool MAP::collisionCheck(float wx, float wy) {
     if ((col < 0) || (col >= Map.cols) || (row < 0) || (row >= Map.rows)) {
         return false;
     }
-    //次の記述で座標がブロックの中に入っているか判定できる
+    //次の記述で座標がマップチップの中に入っているか判定できる
     if (Map.data[col + row * Map.cols] == '1') {
         return true;
     }
     return false;
 }
-//　ブロックとキャラの左辺が重なっているか
+//　マップチップとキャラの左辺が重なっているか
 bool MAP::collisionCharaLeft(float wx, float wy) {
     bool leftTop = collisionCheck(wx, wy);
     bool leftBottom = collisionCheck(wx, wy + Map.chipSize - 1);
     return leftTop || leftBottom;
 }
-//　ブロックとキャラの右辺が重なっているか
+//　マップチップとキャラの右辺が重なっているか
 bool MAP::collisionCharaRight(float wx, float wy) {
     bool rightTop = collisionCheck(wx + Map.chipSize - 1, wy);
     bool rightBottom = collisionCheck(wx + Map.chipSize - 1, wy + Map.chipSize - 1);
     return rightTop || rightBottom;
 }
-//　ブロックとキャラの上辺が重なっているか
+//　マップチップとキャラの上辺が重なっているか
 bool MAP::collisionCharaTop(float wx, float wy) {
     bool topLeft = collisionCheck(wx, wy);
     bool topRight = collisionCheck(wx + Map.chipSize - 1, wy);
     return topLeft || topRight;
 }
-//　ブロックとキャラの下辺が重なっている、または、接しているか。ここだけ他と違う！
+//　マップチップとキャラの下辺が重なっている、または、接しているか。ここだけ他と違う！
 bool MAP::collisionCharaBottom(float wx, float wy) {
     // wy + Map.chipSizeをCheck関数に渡すことにより
-    // キャラがブロックと接しているかチェックできる。
+    // キャラがマップチップと接しているかチェックできる。
     bool bottomLeft = collisionCheck(wx, wy + Map.chipSize);
     bool bottomRight = collisionCheck(wx + Map.chipSize - 1, wy + Map.chipSize);
     return bottomLeft || bottomRight;
 }
-//　ブロックと弾の当たり判定に使用
+//　マップチップと弾の当たり判定に使用
 bool MAP::collisionCharaRect(float wLeft, float wTop, float wRight, float wBottom) {
     bool rightTop = collisionCheck(wRight, wTop);
     bool rightBottom = collisionCheck(wRight, wBottom);

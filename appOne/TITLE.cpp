@@ -5,11 +5,6 @@
 #include"STAGE.h"
 #include"FADE.h"
 #include "TITLE.h"
-TITLE::TITLE(class GAME* game):
-SCENE(game){
-}
-TITLE::~TITLE(){
-}
 void TITLE::init() {
     game()->fade()->inTrigger();
 }

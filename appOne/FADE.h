@@ -16,8 +16,7 @@ private:
     };
     STATE State = STATE::OUT_END;
 public:
-    FADE(class GAME* game);
-    ~FADE();
+    FADE(class GAME* game) : GAME_OBJECT(game) {}
     void create();
     void inTrigger();
     void outTrigger();

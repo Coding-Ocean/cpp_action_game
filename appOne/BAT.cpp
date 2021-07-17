@@ -23,8 +23,7 @@ void BAT::update() {
         if (Bat.triggerCnt == Bat.trigger1st ||
             Bat.triggerCnt == Bat.trigger2nd ||
             Bat.triggerCnt == Bat.trigger3rd ||
-            Bat.triggerCnt == Bat.trigger4th
-            ) {
+            Bat.triggerCnt == Bat.trigger4th ) {
             game()->characterManager()->appear(Bat.bulletCharaId,
                 Chara.wx - Bat.bulletOffsetX, Chara.wy, -1, 0);
         }

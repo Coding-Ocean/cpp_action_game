@@ -32,4 +32,3 @@ private:
     void ChangeColor();
     void damage();
 };
-

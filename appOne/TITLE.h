@@ -5,8 +5,7 @@ class TITLE :
     public SCENE
 {
 public:
-    TITLE(class GAME* game);
-    ~TITLE();
+    TITLE(class GAME* game) : SCENE(game) {}
     void init();
     void draw();
     void nextScene();

@@ -9,7 +9,7 @@ void EXPLOSION::create() {
     Chara = game()->container()->data().explosionChara;
 }
 void EXPLOSION::appear(float wx, float wy, float vx, float vy) {
-    Chara.hp = 1;
+    Chara.hp = game()->container()->data().explosionChara.hp;
     Chara.wx = wx;
     Chara.wy = wy;
     Chara.angle = random() % 7 + 0.0f;

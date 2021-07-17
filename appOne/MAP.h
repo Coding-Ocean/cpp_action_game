@@ -8,7 +8,7 @@ public:
         const char* fileName = 0;
         int blockImg = 0;
         int goalImg = 0;
-        int chipSize = 0; //正方形ブロック画像の一辺のドット数
+        int chipSize = 0; //正方形マップチップ画像の一辺のドット数
         char* data = 0; //データ配列のポインタ
         int cols = 0; //データの列数
         int rows = 0; //データの行数
@@ -42,7 +42,7 @@ public:
     float wx() { return Map.wx; }
     float wy() { return Map.wy; }
     int chipSize() { return Map.chipSize; }
-    //ブロックとキャラの当たり判定に使用する関数群---------------------------------------
+    //マップチップとキャラの当たり判定に使用する関数群---------------------------------------
     bool collisionCheck(float wx, float wy);//下の当たり判定関数群から呼び出して使う関数
     bool collisionCharaLeft(float wx, float wy);
     bool collisionCharaRight(float wx, float wy);

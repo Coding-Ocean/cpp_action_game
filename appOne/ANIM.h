@@ -14,8 +14,8 @@ public:
     void load(int numImages, const char* bodyName, const char* extName="png");
     void draw(int* idx, float* elapsed, float px, float py, float angle=0, float scale=1 );
     void setInterval(float interval) { Interval = interval; }
-    void resetEndFlag() { EndFlag = false; }
     void noLoop() { LoopFlag = 0; }
+    void resetEndFlag() { EndFlag = false; }
     bool end() { return EndFlag; }
 };
 

@@ -20,8 +20,7 @@ private:
     void BackGround();
     void Logo(int img, const COLOR& color);
 public:
-    STAGE(class GAME* game);
-    ~STAGE();
+    STAGE(class GAME* game) : SCENE(game) {}
     void create();
     void init();
     void update();

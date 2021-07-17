@@ -7,11 +7,7 @@
 #include"MAP.h"
 #include"CHARACTER_MANAGER.h"
 #include "STAGE.h"
-STAGE::STAGE(class GAME* game):
-SCENE(game){
-}
-STAGE::~STAGE(){
-}
+
 void STAGE::create(){
     Stage = game()->container()->data().stage;
 }

@@ -110,7 +110,7 @@ void CONTAINER::CreateData() {
     Data.batBulletChara.offsetBottom = 30.0f;
 
     Data.explosionChara.charaId = MAP::EXPLOSION_ID;
-    Data.explosionChara.angle = 1.57f;
+    Data.explosionChara.hp = 1;
 
     Data.charaMng.numPlayers = 1;
     Data.charaMng.numPlayerBullets = 5;
