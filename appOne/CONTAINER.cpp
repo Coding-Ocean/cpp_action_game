@@ -1,17 +1,11 @@
 #include"graphic.h"
 #include "CONTAINER.h"
-#include"ANIM.h"
+#include"ANIMS.h"
 CONTAINER::~CONTAINER() {
-    delete Data.explosionChara.anims[0];
-    delete[] Data.explosionChara.anims;
-    delete Data.batChara.anims[0];
-    delete[] Data.batChara.anims;
-    delete Data.pumpkinChara.anims[1];
-    delete Data.pumpkinChara.anims[0];
-    delete[] Data.pumpkinChara.anims;
-    delete Data.playerChara.anims[1];
-    delete Data.playerChara.anims[0];
-    delete[] Data.playerChara.anims;
+    delete Data.explosionChara.anims;
+    delete Data.batChara.anims;
+    delete Data.pumpkinChara.anims;
+    delete Data.playerChara.anims;
 }
 void CONTAINER::load() {
     CreateData();
@@ -111,6 +105,9 @@ void CONTAINER::CreateData() {
 
     Data.explosionChara.charaId = MAP::EXPLOSION_ID;
     Data.explosionChara.hp = 1;
+    Data.explosionChara.color = COLOR(255, 255, 255, 220);
+    Data.explosion.appearOffsetX = -25;
+    Data.explosion.appearOffsetY = -25;
 
     Data.charaMng.numPlayers = 1;
     Data.charaMng.numPlayerBullets = 5;
@@ -127,26 +124,20 @@ void CONTAINER::LoadGraphics() {
     Data.map.blockImg = loadImage("assets\\block.png");
     Data.map.goalImg = loadImage("assets\\goal.png");
     
-    //アニメーションのパターン数だけポインタ配列を用意
-    Data.playerChara.anims = new ANIM * [2];
-    //コンストラクタのパラメタ
-    // ( 画像枚数、ファイル名(連番無し、拡張子無し)、インターバル時間 )
-    Data.playerChara.anims[0] = new ANIM(2, "assets\\playerR", 0.1f);
-    Data.playerChara.anims[1] = new ANIM(2, "assets\\playerL", 0.1f);
-
+    Data.playerChara.anims = new ANIMS("assets\\player");
+    Data.playerChara.animData.interval = 0.1f;
+   
     Data.playerBulletChara.img = loadImage("assets\\playerBullet.png");
 
-    Data.pumpkinChara.anims = new ANIM * [2];
-    Data.pumpkinChara.anims[0] = new ANIM(4, "assets\\pumpkinR", 0.1f);
-    Data.pumpkinChara.anims[1] = new ANIM(4, "assets\\pumpkinL", 0.1f);
+    Data.pumpkinChara.anims = new ANIMS("assets\\pumpkin");
+    Data.pumpkinChara.animData.interval = 0.1f;
 
-    Data.batChara.anims = new ANIM * [1];
-    Data.batChara.anims[0] = new ANIM(4, "assets\\bat", 0.1f);
+    Data.batChara.anims = new ANIMS("assets\\bat");
+    Data.batChara.animData.interval = 0.1f;
 
     Data.batBulletChara.img = loadImage("assets\\batBullet.png");
 
-    Data.explosionChara.anims = new ANIM * [1];
-    Data.explosionChara.anims[0] = new ANIM(52, "assets\\explosion\\a", 0.032f);
-    Data.explosionChara.anims[0]->noLoop();
-    Data.explosionChara.imgIdx = 16;//←start index
+    Data.explosionChara.anim = new ANIM("assets\\explosion\\0");
+    Data.explosionChara.anim->noLoop();
+    Data.explosionChara.animData.interval = 0.032f;
 }
