@@ -2,8 +2,10 @@
 #include "CONTAINER.h"
 #include"ANIMS.h"
 CONTAINER::~CONTAINER() {
-    delete Data.explosionChara.anims;
-    delete Data.batChara.anims;
+    //１つのアニメーションの開放
+    delete Data.explosionChara.anim;
+    delete Data.batChara.anim;
+    //複数のアニメーションの開放
     delete Data.pumpkinChara.anims;
     delete Data.playerChara.anims;
 }
@@ -124,18 +126,20 @@ void CONTAINER::LoadGraphics() {
     Data.map.blockImg = loadImage("assets\\block.png");
     Data.map.goalImg = loadImage("assets\\goal.png");
     
+    Data.playerBulletChara.img = loadImage("assets\\playerBullet.png");
+
+    Data.batBulletChara.img = loadImage("assets\\batBullet.png");
+
+    //ANIMS 複数のアニメーションセット
     Data.playerChara.anims = new ANIMS("assets\\player");
     Data.playerChara.animData.interval = 0.1f;
-   
-    Data.playerBulletChara.img = loadImage("assets\\playerBullet.png");
 
     Data.pumpkinChara.anims = new ANIMS("assets\\pumpkin");
     Data.pumpkinChara.animData.interval = 0.1f;
 
-    Data.batChara.anims = new ANIMS("assets\\bat");
+    //ANIM １つのアニメーションセット
+    Data.batChara.anim = new ANIM("assets\\bat\\0");
     Data.batChara.animData.interval = 0.1f;
-
-    Data.batBulletChara.img = loadImage("assets\\batBullet.png");
 
     Data.explosionChara.anim = new ANIM("assets\\explosion\\0");
     Data.explosionChara.anim->noLoop();
