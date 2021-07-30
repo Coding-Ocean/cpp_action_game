@@ -92,9 +92,6 @@
     <ClCompile Include="MAP.cpp">
       <Filter>map</Filter>
     </ClCompile>
-    <ClCompile Include="ANIMS.cpp">
-      <Filter>character\anim,base,manager</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GAME.h">
@@ -147,9 +144,6 @@
     </ClInclude>
     <ClInclude Include="MAP.h">
       <Filter>map</Filter>
-    </ClInclude>
-    <ClInclude Include="ANIMS.h">
-      <Filter>character\anim,base,manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

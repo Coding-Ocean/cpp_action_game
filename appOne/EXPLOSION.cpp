@@ -1,23 +1,23 @@
 #include"graphic.h"
 #include"rand.h"
-#include"ANIMS.h"
+#include"ANIM.h"
 #include"CONTAINER.h"
 #include"GAME.h"
 #include"MAP.h"
 #include "EXPLOSION.h"
 void EXPLOSION::create() {
     Chara = game()->container()->data().explosionChara;
-    Explosion = game()->container()->data().explosion;
 }
 void EXPLOSION::appear(float wx, float wy, float vx, float vy) {
     Chara.hp = game()->container()->data().explosionChara.hp;
-    Chara.wx = wx + Explosion.appearOffsetX;
-    Chara.wy = wy + Explosion.appearOffsetY;
+    Chara.wx = wx;
+    Chara.wy = wy;
     Chara.angle = random() % 7 + 0.0f;
-    Chara.animData.reset();
+    Chara.imgIdx = game()->container()->data().explosionChara.imgIdx;
+    Chara.anims[0]->resetEndFlag();
 }
 void EXPLOSION::update() {
-    if (Chara.anim->end(Chara.animData)) {
+    if (Chara.anims[0]->end()) {
         Chara.hp = 0;
     }
 }
