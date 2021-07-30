@@ -5,7 +5,6 @@
 #include"MAP.h"
 #include"PLAYER.h"
 #include"BAT.h"
-#include"EXPLOSION.h"
 #include"PUMPKIN.h"
 #include"CHARACTER_MANAGER.h"
 class CONTAINER
@@ -24,7 +23,6 @@ private:
         BAT::DATA bat;
         CHARACTER::DATA batBulletChara;
         CHARACTER::DATA explosionChara;
-        EXPLOSION::DATA explosion;
         CHARACTER_MANAGER::DATA charaMng;
     };
     DATA Data;

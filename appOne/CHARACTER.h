@@ -1,19 +1,16 @@
 #pragma once
 #include"GAME_OBJECT.h"
 #include"COLOR.h"
-#include"ANIMS.h"
 class CHARACTER :
     public GAME_OBJECT
 {
 public:
     struct DATA {
-        //複数アニメor単体アニメor静止画を使用する
-        //複数アニメーション
-        class ANIMS* anims = nullptr;
+        //動画
+        class ANIM** anims = nullptr;
         int animId = 0;
-        //単体アニメーション
-        class ANIM* anim = nullptr;
-        ANIM_DATA animData;
+        int imgIdx = 0;
+        float elapsedTime = 0;
         //静止画
         int img = 0;
         //合成色
@@ -52,6 +49,6 @@ public:
     float wTop() { return Chara.wy + Chara.offsetTop; }
     float wRight() { return Chara.wx + Chara.offsetRight; }
     float wBottom() { return Chara.wy + Chara.offsetBottom; }
-    void setImgIdx(int i) { Chara.animData.imgIdx = i; }
+    void setImgIdx(int i) { Chara.imgIdx = i; }
 };
 

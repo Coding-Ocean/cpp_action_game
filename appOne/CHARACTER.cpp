@@ -1,5 +1,5 @@
 #include"graphic.h"
-#include"ANIMS.h"
+#include"ANIM.h"
 #include"CONTAINER.h"
 #include"GAME.h"
 #include"MAP.h"
@@ -28,11 +28,7 @@ void CHARACTER::draw() {
     float px = Chara.wx - game()->map()->wx();
     float py = Chara.wy - game()->map()->wy();
     if (Chara.anims) {
-        Chara.anims->anim(Chara.animId)->draw(&Chara.animData,
-            px, py, Chara.angle, Chara.scale);
-    }
-    else if (Chara.anim) {
-        Chara.anim->draw(&Chara.animData,
+        Chara.anims[Chara.animId]->draw(&Chara.imgIdx, &Chara.elapsedTime,
             px, py, Chara.angle, Chara.scale);
     }
     else{

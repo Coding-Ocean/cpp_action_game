@@ -1,64 +1,47 @@
-#include"window.h"
 #include"graphic.h"
-#include<filesystem>
+#include"window.h"
 #include"ANIM.h"
 ANIM::ANIM() {
 }
-ANIM::ANIM(const char* pathName){
-    load(pathName);
+
+ANIM::ANIM(int numImages, const char* bodyName, float interval){
+    load(numImages, bodyName);
+    Interval = interval;
 }
 ANIM::~ANIM() {
-    delete[] Imgs;
+    if (Images) { delete[] Images; Images = 0; }
 }
-void ANIM::load(const char* path) {
-    namespace fs = std::filesystem;
-    NumImgs = 0;
-    for (const auto& e : fs::directory_iterator(path)) {
-        NumImgs++;
-    }
-    Imgs = new int[NumImgs];
-    int i = 0;
-    for (const auto& e : fs::directory_iterator(path)) {
-        Imgs[i] = loadImage(e.path().string().c_str());
-        i++;
-    }
-}
-void ANIM::divideRow(int imgIdx, int row, int cols, int w, int h){
-    NumImgs = cols;
-    Imgs = new int[NumImgs];
-    for (int i = 0; i < NumImgs; i++) {
-        Imgs[i] = cutImage(imgIdx, w*i, row*h, w, h);
+
+//アニメーション画像ファイル名に２桁連番が降ってあることが前提
+//(画像枚数、連番無し拡張子無しファイル名)を指定してアニメーションデータをロード
+void ANIM::load(int numImages, const char* bodyName, const char* extName) {
+    NumImages = numImages;
+    Images = new int[NumImages];
+    char filename[256];
+    for (int i = 0; i < NumImages; i++) {
+        sprintf_s(filename, "%s%02d.%s", bodyName, i, extName);
+        Images[i] = loadImage(filename);
     }
 }
-void ANIM::divide(const char* fileName, int cols, int rows, int w, int h) {
-    NumImgs = cols * rows;
-    Imgs = new int[NumImgs];
-    int img = loadImage(fileName);
-    divideImage(img, cols, rows, w, h, Imgs);
-}
-void ANIM::draw(ANIM_DATA* ad, float px, float py, float angle, float scale){
-    if (LoopFlag) {
-        ad->elapsedTime += delta;
-        if (ad->elapsedTime >= ad->interval) {
-            ad->elapsedTime -= ad->interval;
-            ++(ad->imgIdx);
-            if (ad->imgIdx >= NumImgs) {
-                ad->imgIdx = 0;
+
+void ANIM::draw(int* idx, float* elapsedTime, 
+    float px, float py, float angle, float scale) {
+    //idxの更新
+    *elapsedTime += delta;
+    if (*elapsedTime >= Interval) {
+        *elapsedTime -= Interval;
+        (*idx)++;
+        if (*idx >= NumImages) {
+            if (LoopFlag) {
+                *idx = 0;
+            }
+            else {
+                //爆発など一回のみ再生する場合
+                EndFlag = true;
+                (*idx)--;
             }
         }
-        image(Imgs[ad->imgIdx], px, py, angle, scale);
     }
-    else {
-        if (ad->imgIdx >= NumImgs) {
-            return;
-        }
-        ad->elapsedTime += delta;
-        if (ad->elapsedTime >= ad->interval) {
-            ad->elapsedTime -= ad->interval;
-            ++(ad->imgIdx);
-        }
-        if (ad->imgIdx < NumImgs) {
-            image(Imgs[ad->imgIdx], px, py, angle, scale);
-        }
-    }
+    //draw
+    image(Images[*idx], px, py, angle, scale);
 }
