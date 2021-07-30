@@ -1,7 +1,7 @@
 #include"window.h"
 #include"input.h"
 #include"graphic.h"
-#include"ANIM.h"
+#include"ANIMS.h"
 #include"CONTAINER.h"
 #include"GAME.h"
 #include"MAP.h"
@@ -64,8 +64,8 @@ void PLAYER::Move(){
         Chara.wx += Chara.vx;
     }
     else {//ç∂âEÉLÅ[ì¸óÕÇ™Ç»Ç¢Ç∆Ç´
-        Chara.imgIdx = 0;
-        Chara.elapsedTime = -delta;
+        Chara.animData.imgIdx = 0;
+        Chara.animData.elapsedTime = -delta;
     }
 }
 void PLAYER::CollisionWithMap(){

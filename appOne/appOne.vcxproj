@@ -153,6 +153,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ANIM.cpp" />
+    <ClCompile Include="ANIMS.cpp" />
     <ClCompile Include="BAT.cpp" />
     <ClCompile Include="BAT_BULLET.cpp" />
     <ClCompile Include="CHARACTER.cpp" />
@@ -179,6 +180,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ANIM.h" />
+    <ClInclude Include="ANIMS.h" />
     <ClInclude Include="BAT.h" />
     <ClInclude Include="BAT_BULLET.h" />
     <ClInclude Include="CHARACTER.h" />
